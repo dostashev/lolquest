@@ -1,8 +1,6 @@
-<style>
-    table, th, td {
-        border: 1px solid black;
-    }
-</style>
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
 <table>
     <thead>
         <tr>
@@ -26,7 +24,7 @@
         {% for team_id in standings_data.team_order %}
         {% set team_info = standings_data.team_info[team_id] %}
         <tr>
-            <th>{{ team_info.name }}</th>
+            <td>{{ team_info.name }}</td>
             {% for stage in standings_data.stages %}
             {% for task in stage.tasks %}
             {% set completion = team_info.completed_tasks.get(task.id, None) %}

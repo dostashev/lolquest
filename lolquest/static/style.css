@@ -1,0 +1,46 @@
+:root {
+    --text: #f6f9f9;
+    --background: #000000;
+    --primary: #416861;
+    --secondary: #1a2926;
+    --accent: #6ca39a;
+}
+
+body {background-color: var(--background);}
+
+body, head, h1, h2, h3, p, b {
+  color: var(--text);
+}
+
+table {
+  border-collapse: separate;
+  border-spacing: 0;
+  overflow: hidden;
+}
+th {
+  background-color: var(--accent);
+  color: var(--text);
+}
+th, td {
+  padding: 10px;
+  border: 1px solid var(--text);
+}
+tr:nth-child(odd) {
+  background-color: var(--primary);
+}
+tr:nth-child(even) {
+  background-color: var(--secondary);
+}
+tr:first-child th:first-child {
+  border-top-left-radius: 10px;
+}
+tr:first-child th:last-child {
+  border-top-right-radius: 10px;
+}
+tr:last-child td:first-child {
+  border-bottom-left-radius: 10px;
+}
+tr:last-child td:last-child {
+  border-bottom-right-radius: 10px;
+}*/
+
