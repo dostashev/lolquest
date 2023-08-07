@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Етап {{ team_info.stage }}</title>
+</head>
+<body>
+    {{ standings }}
+
+    <h1>Етап {{ team_info.stage }} </h1>
+    <h2>Вітаємо, {{ team_info.name }}!</h2>
+    <p id="stage_timer"></p>
+
+    {% include stage_content %}
+
+    <form method="POST">
+        <label for="code">Введіть код:</label>
+        <input type="text" name="code">
+        <input type="submit" value="Ввести код!">
+    </form>
+
+    <script>
+        var stage_start_time = {{ stage_start_time }};
+        var stage_end_time = stage_start_time + {{ stage.duration }};
+
+        function stageCountdown() {
+            var time_left = stage_end_time - Date.now() / 1000;
+            if (time_left < 0) {
+                window.location.reload();
+            }
+            var minutes = Math.floor(time_left / 60).toString();
+            while (minutes.length < 2) minutes = "0" + minutes;
+            var seconds = Math.floor(time_left % 60).toString();
+            while (seconds.length < 2) seconds = "0" + seconds;
+            document.getElementById("stage_timer").innerHTML = "Залишилось часу: " + minutes + ":" + seconds;
+        }
+
+        stageCountdown();
+        var countdown = setInterval(stageCountdown, 1000);
+    </script>
+</body>
+</html>

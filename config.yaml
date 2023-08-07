@@ -1,0 +1,71 @@
+_defaults:
+  default_scoring: &default_scoring
+  # 50% for completion + 50% for completing before hint
+  - completed_before: 15
+    percent: 50
+  - completed_before: 60
+    percent: 50
+
+# replace with actual key
+flask_secret_key: topsecret
+
+quest:
+  teams:
+  - name: Команда 1
+    id: team1
+    password: team1p
+  - name: Команда 2
+    id: team2
+    password: team2p
+  - name: Команда 3
+    id: team3
+    password: team3p
+
+  stages:
+  - name: Етап 0
+    duration: 600000
+
+    tasks:
+    - id: task_0_1
+      name: Початок
+      code: glhf
+      max_points: 1
+      scoring:
+      - completed_before: 600000
+        percent: 0
+      counts_towards_total_time: False
+
+  - name: Етап 1
+    duration: 60
+
+    tasks:
+    - id: task_1_1
+      name: Арифметика 1
+      code: "4"
+      max_points: 200
+      scoring: *default_scoring
+    - id: task_1_2
+      name: Логіка
+      code: "і"
+      max_points: 100
+      scoring: *default_scoring
+
+    hints:
+    - text: '<img src="data:image/gif;base64,R0lGODlhNgAmAPcAAAAAAAICAgMDAwYGBgcHBwgICAoKCgwMDA0NDQ4ODg8PDxAQEBISEhQUFBoaGhsbGx8fHyAgICcnJygoKC8vLzAwMDIyMjQ0NDU1NTY2Njc3Nzg4ODs7Oz09PT4+Pj8/P0FBQUJCQkNDQ0REREVFRUdHR0pKSkxMTE1NTU5OTk9PT1BQUFFRUVRUVFVVVVhYWFlZWVtbW1xcXF5eXmFhYWJiYmNjY2RkZGVlZWZmZmhoaGpqamtra21tbW5ubm9vb3BwcHFxcXd3d3h4eHt7e4CAgIaGhoeHh4iIiIqKiouLi4yMjI6Ojo+Pj5CQkJGRkZKSkpOTk5WVlZaWlpeXl5qampubm5ycnJ2dnZ+fn6CgoKOjo6Wlpaampqenp6ioqKmpqaurq6+vr7GxsbKysra2tre3t7i4uLu7u7y8vL+/v8DAwMLCwsPDw8XFxcnJyc3Nzc7Ozs/Pz9DQ0NHR0dPT09XV1dbW1tfX19jY2NnZ2d3d3d7e3uDg4OHh4eLi4uPj4+Tk5OXl5ebm5ujo6Orq6uzs7O3t7e7u7u/v7/Hx8fLy8vPz8/T09PX19fb29vf39/j4+Pn5+fr6+vv7+/z8/P39/f7+/v///wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACwAAAAANgAmAAAI/wAxCRxIsKDBgwgTKsQ0KIeGhRAjSsRUxsSFiQQrNQEE8RAXGAsMCYyzJeGSixgF0qATUcwVKABECvSSBOFJgY54nEiBY5HAQC1scCBx4gimLjYwrolJcIOcgzcxoZAhUAcIgSKCYIoD4I5ADGWUMh1o5AbUi3IA2BH4BwCbSALIYLrEQAumQmMlLpUpMI2Ds5i0BKA0EAGUSgOsYGqUYA8mOAIuCbxkprJlM08J7iU4Z7DBm1k8C0zgBJOPDoa+nBH4psBASz9iy/6RpeDmgXgASPp8ketaTIIArMFkKQgMRAP56BbLF9MbBYAxnZghsMeHgRQyC6zEIA9zgmA8GNcMUwHBkMU7VLC4oUggpAcGMBTRo/KKREIuLAAoAWSgjycpYTJJBlQQMsYKCTCCSR8hWBLgQId4AEmAaEAwkCMCFCKQG0o8iIkkQvTxYBkE1CFQFzEQ1IcfD9LR3oOXDBHBCTVEQZiHOOao4448HiTBj0AGKeSQRBZpJJBV9Kjkkkw26eSTUEYp5ZRUVmnllVg2ScQBAHQJgAlZEqTGHFIwkcgEiTwS5kCSrUAIHi6sWZAiJWCCRRRyEvTEFJjg0EaeJy6A3AgvAIrJBKVhgkQDuxnqqJQBAQA7">'
+      timing: 15
+    - text: "Відповідь: і"
+      timing: 30
+
+  - name: Етап 2
+    duration: 60
+
+    tasks:
+    - id: task_2_1
+      name: Арифметика 2
+      code: "4"
+      max_points: 100
+      scoring: *default_scoring
+
+    hints:
+    - text: 2+2
+      timing: 15

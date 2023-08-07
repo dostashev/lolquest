@@ -1,0 +1,49 @@
+<style>
+    table, th, td {
+        border: 1px solid black;
+    }
+</style>
+<table>
+    <thead>
+        <tr>
+            <th></th>
+            {% for stage in standings_data.stages %}
+            <th colspan="{{ stage.tasks|length }}">{{ stage.name }}</th>
+            {% endfor %}
+            <th rowspan="2">Загально балів</th>
+            <th rowspan="2">Загальний час</th>
+        </tr>
+        <tr>
+            <th></th>
+            {% for stage in standings_data.stages %}
+            {% for task in stage.tasks %}
+            <th>{{ task.name }}</th>
+            {% endfor %}
+            {% endfor %}
+        </tr>
+    </thead>
+    <tbody>
+        {% for team_id in standings_data.team_order %}
+        {% set team_info = standings_data.team_info[team_id] %}
+        <tr>
+            <th>{{ team_info.name }}</th>
+            {% for stage in standings_data.stages %}
+            {% for task in stage.tasks %}
+            {% set completion = team_info.completed_tasks.get(task.id, None) %}
+            {% set
+                alpha = 0 if completion is none
+                else completion.points / task.max_points
+            %}
+            <td style="background-color: rgba(0, 255, 0, {{ alpha }});">
+                {% if completion is not none %}
+                    + ({{ completion.time_since_stage_entered|format_mmss }}, {{ completion.points }} pts)
+                {% endif %}
+            </td>
+            {% endfor %}
+            {% endfor %}
+            <td>{{ team_info.total_points }}</td>
+            <td>{{ team_info.total_time|format_hhmmss }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
