@@ -1,21 +1,21 @@
 <head>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
-<table>
+<table class="center">
     <thead>
         <tr>
-            <th></th>
+            <th style="color:#ffffff;"></th>
             {% for stage in standings_data.stages %}
-            <th colspan="{{ stage.tasks|length }}">{{ stage.name }}</th>
+            <th colspan="{{ stage.tasks|length }}" style="color:#ffffff;">{{ stage.name }}</th>
             {% endfor %}
-            <th rowspan="2">Загально балів</th>
-            <th rowspan="2">Загальний час</th>
+            <th rowspan="2" style="color:#ffffff;">Загально балів</th>
+            <th rowspan="2" style="color:#ffffff;">Загальний час</th>
         </tr>
         <tr>
-            <th></th>
+            <th style="color:#ffffff;"></th>
             {% for stage in standings_data.stages %}
             {% for task in stage.tasks %}
-            <th>{{ task.name }}</th>
+            <th style="color:#ffffff;">{{ task.name }}</th>
             {% endfor %}
             {% endfor %}
         </tr>

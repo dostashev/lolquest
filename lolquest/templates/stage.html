@@ -1,44 +1,63 @@
 <!DOCTYPE html>
 <head>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='lupa.svg') }}">
 </head>
 <html>
 <head>
     <title>Етап {{ team_info.stage }}</title>
 </head>
 <body>
-    {{ standings }}
+    <div class="container">
+        <div class="Top">
+            <div class="TeamName" id="parent">
+                <h1 id="child" style="color: #ffffff;">{{ team_info.name }}</h1>
+            </div>
+            <div class="Logo" style="position: relative">
+                <img src="{{ url_for('static', filename='logo.svg') }}" class="logo">
+            </div>
+            <div class="Stage" id="parent">
+                <h1 id="child" style="color: #ffffff;">Етап {{ team_info.stage }}</h1>
+            </div>
+        </div>
+        <div class="Bottom">
+            <div class="Logs">
+                <h2 class="center"> Тут у нас логи, оформлю позже </h2>
+            </div>
+            <div class="Tasks" style="padding:10px;">
+                {{ standings }}
+                <p id="stage_timer" style="font-size: 25px; text-align: center;"></p>
+                <div style="padding-left: 7%; font-size: 18px;">
+                    {% include stage_content %}
+                    <form method="POST">
+                        <label for="code">Введіть код:</label>
+                        <input type="text" name="code"
+                        <input type="submit" value="🤔" style="font-size: 20px">
+                    </form>
+                </div>
+            <script>
+                var stage_start_time = {{ stage_start_time }};
+                var stage_end_time = stage_start_time + {{ stage.duration }};
 
-    <h1>Етап {{ team_info.stage }} </h1>
-    <h2>Вітаємо, {{ team_info.name }}!</h2>
-    <p id="stage_timer"></p>
+                function stageCountdown() {
+                    var time_left = stage_end_time - Date.now() / 1000;
+                    if (time_left < 0) {
+                        window.location.reload();
+                    }
+                    var minutes = Math.floor(time_left / 60).toString();
+                    while (minutes.length < 2) minutes = "0" + minutes;
+                    var seconds = Math.floor(time_left % 60).toString();
+                    while (seconds.length < 2) seconds = "0" + seconds;
+                    document.getElementById("stage_timer").innerHTML = "Залишилось часу: " + minutes + ":" + seconds;
+                }
 
-    {% include stage_content %}
-
-    <form method="POST">
-        <label for="code">Введіть код:</label>
-        <input type="text" name="code">
-        <input type="submit" value="Ввести код!">
-    </form>
-
-    <script>
-        var stage_start_time = {{ stage_start_time }};
-        var stage_end_time = stage_start_time + {{ stage.duration }};
-
-        function stageCountdown() {
-            var time_left = stage_end_time - Date.now() / 1000;
-            if (time_left < 0) {
-                window.location.reload();
-            }
-            var minutes = Math.floor(time_left / 60).toString();
-            while (minutes.length < 2) minutes = "0" + minutes;
-            var seconds = Math.floor(time_left % 60).toString();
-            while (seconds.length < 2) seconds = "0" + seconds;
-            document.getElementById("stage_timer").innerHTML = "Залишилось часу: " + minutes + ":" + seconds;
-        }
-
-        stageCountdown();
-        var countdown = setInterval(stageCountdown, 1000);
-    </script>
+                stageCountdown();
+                var countdown = setInterval(stageCountdown, 1000);
+            </script>
+            </div>
+            <div class="Gap2"></div>
+        </div>
+        <div class="Gap"></div>
+    </div>
 </body>
 </html>
