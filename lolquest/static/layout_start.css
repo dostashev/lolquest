@@ -86,55 +86,74 @@ tr:last-child td:last-child {
   border-bottom-right-radius: 10px;
 }
 
-input[type=password] {
-  border: 2px solid black;
-  border-radius: 7px;
+.container {  display: grid;
+  grid-template-columns: 1fr 0.9fr 1.1fr;
+  grid-template-rows: 0.3fr 0.01fr 2.6fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "Top Top Top"
+    "Gap Gap Gap"
+    "Bottom Bottom Bottom";
 }
 
-input[type=text] {
-  border: 2px solid black;
-  border-radius: 7px;
+.Top {  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "Stage Logo TeamName"
+    "Stage Logo TeamName"
+    "Stage Logo TeamName";
+  grid-area: Top;
+  background-color: var(--primary);
 }
 
-input[type=text]:focus {
-  background-color: lightblue;
+.Logo {
+    grid-area: Logo;
 }
 
-input[type=submit] {
-    padding:5px 15px; 
-    background: #eeeeee; 
-    cursor:pointer;
-    border: 2px solid black;
-    border-radius: 7px;
-    font-size: 20px;
+.TeamName {
+    grid-area: TeamName; 
 }
 
-.github {
-	z-index: 10000;
-	bottom: 10px;
-	right: 10px;
-	position: fixed;
-	border-radius: 10px;
-	background: #fff;
-	padding: 0 12px 6px 12px;
-	border: 1px solid #000;
+.Stage {
+    grid-area: Stage;
 }
 
-.github a:hover,
-.github a:link,
-.github a:visited,
-.github a:active {
-	color: #000;
-	text-decoration: none;
+.Bottom {  display: grid;
+  padding: 10px;
+  grid-template-columns: 2fr 0fr 0fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "Tasks Gap2 Logs"
+    "Tasks Gap2 Logs"
+    "Tasks Gap2 Logs";
+  grid-area: Bottom;
 }
 
-.github img {
-	height: 30px;
+.Logs {
+    grid-area: Logs;
 }
 
-.github #gh-project {
-	font-size: 20px;
-	padding-left: 5px;
-	font-weight: bold;
-	vertical-align: bottom;
+.Tasks {
+    grid-area: Tasks; 
+    background-color: #d9d9d9;
+    border-color: #84878c;
+    border-style: solid;
+    border-width: thick;
+    border-radius: 10px;
+}
+
+.Gap2 { grid-area: Gap2; }
+
+.Gap { grid-area: Gap; }
+
+
+html, body , .container {
+  height: 100%;
+  margin: 0;
 }

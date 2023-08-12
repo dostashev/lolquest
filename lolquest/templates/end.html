@@ -1,21 +1,55 @@
 <!DOCTYPE html>
 <head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='layout_end.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='lupa.svg') }}">
 </head>
 <html>
 <head>
     <title>Фініш</title>
 </head>
 <body>
-    <h1>Вітаємо із прибуттям на фініш!</h1>
-    <h2>Ви успішно пройшли Квест.</h2>
-
-    {{ standings }}
-
-    <script>
-        window.setTimeout( function() {
-            window.location.reload();
-        }, 30000);
-    </script>
+    <div id="confettis">
+        <div class="confetti"></div>
+        <div class="confetti"></div>
+        <div class="confetti"></div>
+        <div class="confetti"></div>
+        <div class="confetti"></div>
+        <div class="confetti"></div>
+        <div class="confetti"></div>
+        <div class="confetti"></div>
+        <div class="confetti"></div>
+    </div>
+    <div class="container">
+        <div class="Top">
+            <div class="TeamName" id="parent">
+                <h1 id="child" style="color: #ffffff;">{{team_info.name}}</h1>
+            </div>
+            <div class="Logo" style="position: relative">
+                <img src="{{ url_for('static', filename='logo.svg') }}" class="logo">
+            </div>
+            <div class="Stage" id="parent">
+                <h1 id="child" style="color: #ffffff;">Фiнiш</h1>
+            </div>
+        </div>
+        <div class="Bottom">
+            <div class="Logs">
+            </div>
+            <div class="Tasks" style="padding:10px;">
+                <div style="text-align: center;">
+                    <h1>Вітаємо із прибуттям на фініш!</h1>
+                    <h2>Ви успішно пройшли Квест.</h2>
+                </div>
+                {{ standings }}
+                <script>
+                    window.setTimeout( function() {
+                        window.location.reload();
+                    }, 30000);
+                </script>
+            </div>
+            <div class="Gap2"></div>
+        </div>
+        <div class="Gap"></div>
+    </div>
 </body>
 </html>

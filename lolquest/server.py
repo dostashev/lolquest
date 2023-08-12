@@ -101,7 +101,11 @@ def end_page():
 
     standings_view = StandingsTableView(standings_data=standings_data)
 
-    return render_template("end.html", standings=standings_view)
+    return render_template(
+        "end.html", 
+        standings=standings_view,
+        team_info=team_info,
+    )
 
 
 @app.route("/standings", methods=["GET", "POST"])
