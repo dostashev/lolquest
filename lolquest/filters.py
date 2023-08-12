@@ -30,7 +30,12 @@ def local_time(timestamp: float):
     )
 
 
+def hidden_if(condition: bool):
+    return do_mark_safe("class='hidden'" if condition else "")
+
+
 def register_filters(app: Flask):
     app.add_template_filter(format_mmss)
     app.add_template_filter(format_hhmmss)
     app.add_template_filter(local_time)
+    app.add_template_filter(hidden_if)

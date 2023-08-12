@@ -1,21 +1,31 @@
 <head>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
-<table class="center">
+<table class="center scrollable">
     <thead>
         <tr>
             <th style="color:#ffffff;"></th>
             {% for stage in standings_data.stages %}
-            <th colspan="{{ stage.tasks|length }}" style="color:#ffffff;">{{ stage.name }}</th>
+            {% set stage_index = loop.index0 %}
+            {% set stage_is_open = (loop.index0 in open_stages) %}
+            <th colspan="{{ (stage.tasks | length) if stage_is_open else 1 }}" style="color:#ffffff;">
+                <div class="section-icon" data-section="{{ stage_index }}" onclick="toggleSection(this)">
+                    <i class="arrow {{ 'down' if stage_is_open else 'right' }}"></i>
+                </div>
+                {{ stage.name }}
+            </th>
             {% endfor %}
-            <th rowspan="2" style="color:#ffffff;">Загально балів</th>
+            <th rowspan="2" style="color:#ffffff;">Загалом балів</th>
             <th rowspan="2" style="color:#ffffff;">Загальний час</th>
         </tr>
         <tr>
             <th style="color:#ffffff;"></th>
             {% for stage in standings_data.stages %}
+            {% set stage_index = loop.index0 %}
+            {% set stage_is_open = (loop.index0 in open_stages) %}
+            <th data-section="{{ stage_index }}" style="color:#ffffff;" {{ stage_is_open | hidden_if }}>Загалом</th>
             {% for task in stage.tasks %}
-            <th style="color:#ffffff;">{{ task.name }}</th>
+            <th data-section="{{ stage_index }}" style="color:#ffffff;" {{ (not stage_is_open) | hidden_if }}>{{ task.name }}</th>
             {% endfor %}
             {% endfor %}
         </tr>
@@ -26,13 +36,23 @@
         <tr>
             <td>{{ team_info.name }}</td>
             {% for stage in standings_data.stages %}
+            {% set stage_index = loop.index0 %}
+            {% set stage_is_open = (loop.index0 in open_stages) %}
+                {% set stage_points = standings_data.stage_points[team_id][loop.index0] %}
+                {% set stage_max_points = standings_data.stage_max_points[team_id][loop.index0] %}
+                {% set stage_ratio = stage_points / stage_max_points %}
+            <td data-section="{{ stage_index }}" style="background-color: rgba(0, 255, 0, {{ stage_ratio }});" {{ stage_is_open | hidden_if }}>
+                {% if team_info.stage >= loop.index0 %}
+                {{ stage_points }} / {{ stage_max_points }}
+                {% endif %}
+            </td>
             {% for task in stage.tasks %}
             {% set completion = team_info.completed_tasks.get(task.id, None) %}
             {% set
                 alpha = 0 if completion is none
                 else completion.points / task.max_points
             %}
-            <td style="background-color: rgba(0, 255, 0, {{ alpha }});">
+            <td data-section="{{ stage_index }}" style="background-color: rgba(0, 255, 0, {{ alpha }});" {{ (not stage_is_open) | hidden_if }}>
                 {% if completion is not none %}
                     + ({{ completion.time_since_stage_entered|format_mmss }}, {{ completion.points }} pts)
                 {% endif %}
@@ -45,3 +65,34 @@
         {% endfor %}
     </tbody>
 </table>
+
+<script>
+    function toggleSection(element) {
+        const sectionName = element.getAttribute('data-section');
+        const columns = document.querySelectorAll(
+            `th[data-section="${sectionName}"], td[data-section="${sectionName}"]`
+        );
+
+        columns.forEach(column => {
+            if (column.classList.contains('hidden')) {
+                column.classList.remove('hidden');
+            } else {
+                column.classList.add('hidden');
+            }
+        });
+
+        element.parentElement.colSpan = document.querySelectorAll(
+            `th:not(.hidden)[data-section="${sectionName}"]`,
+        ).length;
+
+        let icon = element.querySelector("i");
+        if (icon.classList.contains('right')) {
+            icon.classList.remove('right');
+            icon.classList.add('down');
+        } else {
+            icon.classList.remove('down');
+            icon.classList.add('right');
+        }
+    }
+
+</script>

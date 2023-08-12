@@ -72,6 +72,7 @@ def quest_page():
 
     standings_view = StandingsTableView(
         standings_data=controller.get_standings_data(),
+        open_stages=[team_info.stage],
     )
 
     return render_template(
@@ -99,7 +100,10 @@ def end_page():
     with controller.lock:
         standings_data = controller.get_standings_data()
 
-    standings_view = StandingsTableView(standings_data=standings_data)
+    standings_view = StandingsTableView(
+        standings_data=standings_data,
+        open_stages=list(range(len(standings_data.stages) + 1)),
+    )
 
     return render_template("end.html", standings=standings_view)
 
@@ -109,7 +113,10 @@ def standings_page():
     with controller.lock:
         standings_data = controller.get_standings_data()
 
-    standings_view = StandingsTableView(standings_data=standings_data)
+    standings_view = StandingsTableView(
+        standings_data=standings_data,
+        open_stages=list(range(len(standings_data.stages) + 1)),
+    )
 
     return render_template("standings.html", standings=standings_view)
 

@@ -1,4 +1,5 @@
 import time
+from typing import List
 from uuid import uuid4
 
 from flask import render_template
@@ -21,11 +22,13 @@ class HintView:
 
 
 class StandingsTableView:
-    def __init__(self, standings_data: StandingsData):
+    def __init__(self, standings_data: StandingsData, open_stages: List[int]):
         self.standings_data = standings_data
+        self.open_stages = open_stages
 
     def __html__(self):
         return render_template(
             "standings_table.html",
             standings_data=self.standings_data,
+            open_stages=self.open_stages,
         )
