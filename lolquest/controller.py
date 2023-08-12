@@ -20,6 +20,13 @@ class TaskCompletionInfo:
 
 
 @dataclass
+class Message:
+    timestamp: float
+    text: str
+    safe: bool = False
+
+
+@dataclass
 class TeamInfo:
     name: str
     stage: int
@@ -28,6 +35,7 @@ class TeamInfo:
     total_time: float = 0
     finished: bool = False
     completed_tasks: Dict[str, TaskCompletionInfo] = field(default_factory=dict)
+    messages: List[Message] = field(default_factory=list)
 
 
 @dataclass
@@ -94,6 +102,7 @@ class Controller:
                 self._up_stage(
                     team_info=team_info,
                     timestamp=stage_entered_time + stage.duration,
+                    timeout=True,
                 )
 
             elif all(task.id in team_info.completed_tasks for task in stage.tasks):
@@ -101,6 +110,7 @@ class Controller:
                 self._up_stage(
                     team_info=team_info,
                     timestamp=timestamp,
+                    timeout=False,
                 )
 
     def game_start(self):
@@ -223,6 +233,19 @@ class Controller:
 
                 code_accepted = True
 
+        message_text = f"Введено код: {code}. "
+        if code_accepted:
+            message_text += "Код зараховано!"
+        else:
+            message_text += "Неправильний код!"
+
+        team_info.messages.append(
+            Message(
+                timestamp=timestamp,
+                text=message_text,
+            )
+        )
+
         self.up_stage_if_needed(team_id=team_id, timestamp=timestamp)
 
         return code_accepted
@@ -240,8 +263,40 @@ class Controller:
             )
         )
 
-    def _up_stage(self, team_info: TeamInfo, timestamp: float):
+    def _up_stage(self, team_info: TeamInfo, timestamp: float, timeout: bool):
         team_info.stage += 1
         team_info.stage_entered_timestamps.append(timestamp)
         if team_info.stage == len(self.config.stages):
             team_info.finished = True
+            team_info.messages.append(
+                Message(
+                    timestamp=timestamp,
+                    text="Ви прийшли на фініш!",
+                )
+            )
+        else:
+            if timeout:
+                team_info.messages.append(
+                    Message(
+                        timestamp=timestamp,
+                        text=f"Час на етапі вийшов. Ви перейшли на етап {team_info.stage}.",
+                    )
+                )
+            else:
+                team_info.messages.append(
+                    Message(
+                        timestamp=timestamp,
+                        text=f"Всі завдання виконано. Ви перейшли на етап {team_info.stage}.",
+                    )
+                )
+
+            message = self.config.stages[team_info.stage].message
+
+            if message is not None:
+                team_info.messages.append(
+                    Message(
+                        timestamp=timestamp,
+                        text=message,
+                        safe=True,
+                    )
+                )

@@ -22,7 +22,11 @@
         </div>
         <div class="Bottom">
             <div class="Logs">
-                <h2 class="center"> Тут у нас логи, оформлю позже </h2>
+                {% for message in team_info.messages %}
+                <p>
+                    <b>{{ message.timestamp | local_time }}</b>: {{ message.text | safe }}
+                </p>
+                {% endfor %}
             </div>
             <div class="Tasks" style="padding:10px;">
                 {{ standings }}

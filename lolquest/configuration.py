@@ -1,6 +1,7 @@
 from dataclasses import dataclass
 from dataclasses import field
 from typing import List
+from typing import Optional
 
 from omegaconf import MISSING
 
@@ -40,6 +41,7 @@ class StageConfig:
     duration: float = 2700
     tasks: List[TaskConfig] = MISSING
     hints: List[HintConfig] = field(default_factory=list)
+    message: Optional[str] = None
 
 
 @dataclass

@@ -1,4 +1,7 @@
+from uuid import uuid4
+
 from flask import Flask
+from jinja2.filters import do_mark_safe
 
 
 def format_hhmmss(seconds: float):
@@ -14,6 +17,20 @@ def format_mmss(seconds: float):
     return f"{minutes:02d}:{seconds:02d}"
 
 
+def local_time(timestamp: float):
+    uuid = uuid4().hex
+    return do_mark_safe(
+        f"""
+        <text id="{uuid}"></text>
+        <script>
+            document.getElementById("{uuid}").innerText =
+                new Date({timestamp} * 1000).toTimeString().slice(0, 8);
+        </script>
+        """
+    )
+
+
 def register_filters(app: Flask):
     app.add_template_filter(format_mmss)
     app.add_template_filter(format_hhmmss)
+    app.add_template_filter(local_time)
