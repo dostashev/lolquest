@@ -3,8 +3,7 @@
     function hintTimer() {
         var time_left = {{ hint_time }} - Date.now() / 1000;
         if (time_left < 0) {
-            window.location.reload();
-            time_left = 0;
+            window.location = window.location.href;
         }
         var minutes = Math.floor(time_left / 60).toString();
         while (minutes.length < 2) minutes = "0" + minutes;

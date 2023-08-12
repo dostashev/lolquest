@@ -24,7 +24,8 @@
             <div class="Logs">
                 {% for message in team_info.messages %}
                 <p>
-                    <b>{{ message.timestamp | local_time }}</b>: {{ message.text | safe }}
+                    <b>{{ message.timestamp | local_time }}</b>
+                    : {{ (message.text | safe) if message.safe else message.text }}
                 </p>
                 {% endfor %}
             </div>
@@ -46,7 +47,7 @@
                 function stageCountdown() {
                     var time_left = stage_end_time - Date.now() / 1000;
                     if (time_left < 0) {
-                        window.location.reload();
+                        window.location = window.location.href;
                     }
                     var minutes = Math.floor(time_left / 60).toString();
                     while (minutes.length < 2) minutes = "0" + minutes;
