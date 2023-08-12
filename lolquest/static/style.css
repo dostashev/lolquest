@@ -61,7 +61,7 @@ th {
   background-color: var(--secondary);
   color: var(--text);
 }
-th, td { 
+th, td {
   padding: 10px;
   border-width: 1px;
   border-style: solid;
@@ -86,6 +86,11 @@ tr:last-child td:last-child {
   border-bottom-right-radius: 10px;
 }
 
+html, body , .container {
+  height: 100%;
+  margin: 0;
+}
+
 input[type=password] {
   border: 2px solid black;
   border-radius: 7px;
@@ -107,4 +112,40 @@ input[type=submit] {
     border: 2px solid black;
     border-radius: 7px;
     font-size: 20px;
+}
+
+.hidden {
+  display: none;
+}
+
+.section-icon {
+  cursor: pointer;
+}
+
+.arrow {
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  float: left;
+  padding: 3px;
+  margin-right: 10px;
+}
+
+.right {
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+}
+
+.left {
+  transform: rotate(135deg);
+  -webkit-transform: rotate(135deg);
+}
+
+.up {
+  transform: rotate(-135deg);
+  -webkit-transform: rotate(-135deg);
+}
+
+.down {
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
 }

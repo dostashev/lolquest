@@ -32,7 +32,7 @@ quest:
       max_points: 1
       scoring:
       - completed_before: 600000
-        percent: 0
+        percent: 100
       counts_towards_total_time: False
 
   - name: Етап 1

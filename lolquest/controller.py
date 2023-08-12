@@ -43,6 +43,8 @@ class StandingsData:
     team_order: List[str]
     team_info: Dict[str, TeamInfo]
     stages: List[StageConfig]
+    stage_points: Dict[str, List[int]]
+    stage_max_points: Dict[str, List[int]]
 
 
 class Controller:
@@ -71,10 +73,37 @@ class Controller:
             ),
         )
 
+        stage_points = {
+            team_id: [
+                sum(
+                    completion.points
+                    for task in stage.tasks
+                    if (
+                        completion := self.team_info[team_id].completed_tasks.get(
+                            task.id, None
+                        )
+                    )
+                    is not None
+                )
+                for stage in self.config.stages
+            ]
+            for team_id in team_ids
+        }
+
+        stage_max_points = {
+            team_id: [
+                sum(task.max_points for task in stage.tasks)
+                for stage in self.config.stages
+            ]
+            for team_id in team_ids
+        }
+
         return StandingsData(
             team_order=team_order,
             team_info=self.team_info,
             stages=self.config.stages,
+            stage_points=stage_points,
+            stage_max_points=stage_max_points,
         )
 
     def get_team_info(self, team_id: str):
