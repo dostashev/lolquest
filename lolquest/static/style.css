@@ -106,8 +106,8 @@ input[type=text]:focus {
 }
 
 input[type=submit] {
-    padding:5px 15px; 
-    background: #eeeeee; 
+    padding:5px 15px;
+    background: #eeeeee;
     cursor:pointer;
     border: 2px solid black;
     border-radius: 7px;
@@ -130,22 +130,12 @@ input[type=submit] {
   margin-right: 10px;
 }
 
-.right {
+.section-icon.closed i {
   transform: rotate(-45deg);
   -webkit-transform: rotate(-45deg);
 }
 
-.left {
-  transform: rotate(135deg);
-  -webkit-transform: rotate(135deg);
-}
-
-.up {
-  transform: rotate(-135deg);
-  -webkit-transform: rotate(-135deg);
-}
-
-.down {
+.section-icon.open i {
   transform: rotate(45deg);
   -webkit-transform: rotate(45deg);
 }

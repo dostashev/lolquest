@@ -117,6 +117,12 @@ class Controller:
         return False
 
     def up_stage_if_needed(self, team_id: str, timestamp: float):
+        """
+        Moves the team to next stage if required (i.e. timeout or all tasks completed)
+
+        Returns:
+            True if moved to next stage, else False
+        """
         with self.lock:
             team_info = self.team_info[team_id]
 
@@ -133,6 +139,7 @@ class Controller:
                     timestamp=stage_entered_time + stage.duration,
                     timeout=True,
                 )
+                return True
 
             elif all(task.id in team_info.completed_tasks for task in stage.tasks):
                 # All tasks completed
@@ -141,6 +148,9 @@ class Controller:
                     timestamp=timestamp,
                     timeout=False,
                 )
+                return True
+
+            return False
 
     def game_start(self):
         """
@@ -162,7 +172,7 @@ class Controller:
         Team enters code
 
         Return:
-            True if password is correct, else False
+            True if moved to next stage, else False
         """
 
         with self.lock:
@@ -175,7 +185,7 @@ class Controller:
                 timestamp=timestamp,
             )
 
-            self._team_enter_code(
+            return self._team_enter_code(
                 team_id=team_id,
                 code=code,
                 timestamp=timestamp,
@@ -275,9 +285,9 @@ class Controller:
             )
         )
 
-        self.up_stage_if_needed(team_id=team_id, timestamp=timestamp)
+        stage_upped = self.up_stage_if_needed(team_id=team_id, timestamp=timestamp)
 
-        return code_accepted
+        return stage_upped
 
     @staticmethod
     def _get_points_for_completed_task(

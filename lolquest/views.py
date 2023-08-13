@@ -1,8 +1,10 @@
 import time
 from typing import List
+from typing import Optional
 from uuid import uuid4
 
 from flask import render_template
+from flask import request
 from lolquest.configuration import HintConfig
 from lolquest.controller import StandingsData
 
@@ -31,4 +33,26 @@ class StandingsTableView:
             "standings_table.html",
             standings_data=self.standings_data,
             open_stages=self.open_stages,
+        )
+
+    @staticmethod
+    def open_stages_from_request(
+        standings_data: StandingsData,
+        override: Optional[List[int]] = None,
+        override_default: Optional[List[int]] = None,
+    ):
+        open_stages = request.args.get("openSections")
+        if override is not None:
+            open_stages = override
+        elif open_stages is None:
+            if override_default is not None:
+                open_stages = override_default
+            else:
+                open_stages = list(range(len(standings_data.stages) + 1))
+        else:
+            open_stages = list(map(int, open_stages.split(",")))
+
+        return StandingsTableView(
+            standings_data=standings_data,
+            open_stages=open_stages,
         )

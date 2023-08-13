@@ -9,8 +9,8 @@
             {% set stage_index = loop.index0 %}
             {% set stage_is_open = (loop.index0 in open_stages) %}
             <th colspan="{{ (stage.tasks | length) if stage_is_open else 1 }}" style="color:#ffffff;">
-                <div class="section-icon" data-section="{{ stage_index }}" onclick="toggleSection(this)">
-                    <i class="arrow {{ 'down' if stage_is_open else 'right' }}"></i>
+                <div class="section-icon {{ 'open' if stage_is_open else 'closed' }}" data-section="{{ stage_index }}" onclick="toggleSection(this)">
+                    <i class="arrow"></i>
                 </div>
                 {{ stage.name }}
             </th>
@@ -67,9 +67,34 @@
 </table>
 
 <script>
+    function setQueryParam(key, value) {
+        var searchParams = new URLSearchParams(window.location.search);
+        if (value === null) {
+            searchParams.delete(key);
+        } else {
+            searchParams.set(key, value);
+        }
+        let searchParamsStr = searchParams.toString();
+        if (searchParamsStr.length > 0) {
+            searchParamsStr = '?' + searchParamsStr;
+        }
+        var newRelativePathQuery = window.location.pathname + searchParamsStr;
+        history.pushState(null, '', newRelativePathQuery);
+    }
+
+    function getOpenSections(table) {
+        let openSections = [];
+        table.querySelectorAll('.section-icon.open').forEach(element => {
+            openSections.push(element.getAttribute('data-section'));
+        });
+        return openSections;
+    }
+
     function toggleSection(element) {
+        let table = element.closest('table');
+
         const sectionName = element.getAttribute('data-section');
-        const columns = document.querySelectorAll(
+        const columns = table.querySelectorAll(
             `th[data-section="${sectionName}"], td[data-section="${sectionName}"]`
         );
 
@@ -85,14 +110,17 @@
             `th:not(.hidden)[data-section="${sectionName}"]`,
         ).length;
 
-        let icon = element.querySelector("i");
-        if (icon.classList.contains('right')) {
-            icon.classList.remove('right');
-            icon.classList.add('down');
+        if (element.classList.contains('open')) {
+            element.classList.replace('open', 'closed');
         } else {
-            icon.classList.remove('down');
-            icon.classList.add('right');
+            element.classList.replace('closed', 'open');
+        }
+
+        let openSections = getOpenSections(table);
+        if (openSections.length == 0) {
+            setQueryParam("openSections", null);
+        } else {
+            setQueryParam("openSections", openSections);
         }
     }
-
 </script>

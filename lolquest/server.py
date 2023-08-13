@@ -54,25 +54,33 @@ def quest_page():
 
     team_id = session["team_id"]
 
-    controller.up_stage_if_needed(team_id=team_id, timestamp=time.time())
+    stage_upped = controller.up_stage_if_needed(team_id=team_id, timestamp=time.time())
 
     team_info = controller.get_team_info(team_id)
 
     if request.method == "POST":
         code = request.form["code"]
-        controller.team_enter_code(team_id=team_id, code=code)
+        stage_upped |= controller.team_enter_code(team_id=team_id, code=code)
 
     if team_info.finished:
         return redirect(url_for("end_page"))
+
+    if stage_upped:
+        return redirect(url_for("quest_page"))
 
     stage = controller.config.stages[team_info.stage]
     stage_start_time = team_info.stage_entered_timestamps[-1]
 
     hints = [HintView(hint, stage_start_time) for hint in stage.hints]
 
-    standings_view = StandingsTableView(
+    override_open_stages = None
+    if stage_upped:
+        override_open_stages = [team_info.stage]
+
+    standings_view = StandingsTableView.open_stages_from_request(
         standings_data=controller.get_standings_data(),
-        open_stages=[team_info.stage],
+        override=override_open_stages,
+        override_default=[team_info.stage],
     )
 
     return render_template(
@@ -100,13 +108,12 @@ def end_page():
     with controller.lock:
         standings_data = controller.get_standings_data()
 
-    standings_view = StandingsTableView(
+    standings_view = StandingsTableView.open_stages_from_request(
         standings_data=standings_data,
-        open_stages=list(range(len(standings_data.stages) + 1)),
     )
 
     return render_template(
-        "end.html", 
+        "end.html",
         standings=standings_view,
         team_info=team_info,
     )
@@ -117,9 +124,8 @@ def standings_page():
     with controller.lock:
         standings_data = controller.get_standings_data()
 
-    standings_view = StandingsTableView(
+    standings_view = StandingsTableView.open_stages_from_request(
         standings_data=standings_data,
-        open_stages=list(range(len(standings_data.stages) + 1)),
     )
 
     return render_template("standings.html", standings=standings_view)
