@@ -105,7 +105,11 @@ def end_page():
         open_stages=list(range(len(standings_data.stages) + 1)),
     )
 
-    return render_template("end.html", standings=standings_view)
+    return render_template(
+        "end.html", 
+        standings=standings_view,
+        team_info=team_info,
+    )
 
 
 @app.route("/standings", methods=["GET", "POST"])

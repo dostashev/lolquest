@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='layout_stage.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <link rel="icon" href="{{ url_for('static', filename='lupa.svg') }}">
 </head>
@@ -22,7 +23,7 @@
         </div>
         <div class="Bottom">
             <div class="Logs">
-                {% for message in team_info.messages %}
+                {% for message in team_info.messages[::-1] %}
                 <p>
                     <b>{{ message.timestamp | local_time }}</b>
                     : {{ (message.text | safe) if message.safe else message.text }}
@@ -32,7 +33,7 @@
             <div class="Tasks" style="padding:10px;">
                 {{ standings }}
                 <p id="stage_timer" style="font-size: 25px; text-align: center;"></p>
-                <div style="padding-left: 7%; font-size: 18px;">
+                <div style="padding-left: 5%; padding-right: 5%; font-size: 18px;">
                     {% include stage_content %}
                     <form method="POST">
                         <label for="code">Введіть код:</label>

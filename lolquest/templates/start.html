@@ -1,21 +1,50 @@
 <!DOCTYPE html>
 <head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='layout_start.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='lupa.svg') }}">
 </head>
 <html>
 <head>
     <title>Квест ЛОЛ-2023</title>
 </head>
 <body>
-    <h1>Вітаємо у Квесті!</h1>
-    <form method="POST">
-        <label for="team_id">Логін команди:</label>
-        <input type="text" name="team_id">
-        <br>
-        <label for="password">Пароль команди:</label>
-        <input type="password" name="password">
-        <br>
-        <input type="submit" value="Войти">
-    </form>
+    <div class="container">
+        <div class="Top">
+            <div class="TeamName" id="parent">
+                <h1 id="child" style="color: #ffffff;">🤔</h1>
+            </div>
+            <div class="Logo" style="position: relative">
+                <img src="{{ url_for('static', filename='logo.svg') }}" class="logo">
+            </div>
+            <div class="Stage" id="parent">
+                <h1 id="child" style="color: #ffffff;">Реєстрацiя</h1>
+            </div>
+        </div>
+        <div class="Bottom">
+            <div class="Logs">
+            </div>
+            <div class="Tasks" style="padding:10px;">
+                <div style="padding-left: 5%; padding-right: 5%; font-size: 18px;">
+                    <h1>Вітаємо у Квесті!</h1>
+                    <form method="POST">
+                        <br>
+                            <label for="team_id">Логін команди:</label>
+                            <input type="text" name="team_id" style="font-size: 20px">
+                        <br>
+                        <br>
+                            <label for="password">Пароль команди:</label>
+                            <input type="password" name="password" style="font-size: 20px">
+                        <br>
+                        <br>
+                            <input type="submit" value="Войти">
+                        <br>
+                    </form>
+                </div>
+            </div>
+            <div class="Gap2"></div>
+        </div>
+        <div class="Gap"></div>
+    </div>
 </body>
 </html>

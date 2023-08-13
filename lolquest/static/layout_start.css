@@ -61,7 +61,7 @@ th {
   background-color: var(--secondary);
   color: var(--text);
 }
-th, td {
+th, td { 
   padding: 10px;
   border-width: 1px;
   border-style: solid;
@@ -86,66 +86,74 @@ tr:last-child td:last-child {
   border-bottom-right-radius: 10px;
 }
 
+.container {  display: grid;
+  grid-template-columns: 1fr 0.9fr 1.1fr;
+  grid-template-rows: 0.3fr 0.01fr 2.6fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "Top Top Top"
+    "Gap Gap Gap"
+    "Bottom Bottom Bottom";
+}
+
+.Top {  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "Stage Logo TeamName"
+    "Stage Logo TeamName"
+    "Stage Logo TeamName";
+  grid-area: Top;
+  background-color: var(--primary);
+}
+
+.Logo {
+    grid-area: Logo;
+}
+
+.TeamName {
+    grid-area: TeamName; 
+}
+
+.Stage {
+    grid-area: Stage;
+}
+
+.Bottom {  display: grid;
+  padding: 10px;
+  grid-template-columns: 2fr 0fr 0fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "Tasks Gap2 Logs"
+    "Tasks Gap2 Logs"
+    "Tasks Gap2 Logs";
+  grid-area: Bottom;
+}
+
+.Logs {
+    grid-area: Logs;
+}
+
+.Tasks {
+    grid-area: Tasks; 
+    background-color: #d9d9d9;
+    border-color: #84878c;
+    border-style: solid;
+    border-width: thick;
+    border-radius: 10px;
+}
+
+.Gap2 { grid-area: Gap2; }
+
+.Gap { grid-area: Gap; }
+
+
 html, body , .container {
   height: 100%;
   margin: 0;
-}
-
-input[type=password] {
-  border: 2px solid black;
-  border-radius: 7px;
-}
-
-input[type=text] {
-  border: 2px solid black;
-  border-radius: 7px;
-}
-
-input[type=text]:focus {
-  background-color: lightblue;
-}
-
-input[type=submit] {
-    padding:5px 15px; 
-    background: #eeeeee; 
-    cursor:pointer;
-    border: 2px solid black;
-    border-radius: 7px;
-    font-size: 20px;
-}
-
-.hidden {
-  display: none;
-}
-
-.section-icon {
-  cursor: pointer;
-}
-
-.arrow {
-  border: solid white;
-  border-width: 0 3px 3px 0;
-  float: left;
-  padding: 3px;
-  margin-right: 10px;
-}
-
-.right {
-  transform: rotate(-45deg);
-  -webkit-transform: rotate(-45deg);
-}
-
-.left {
-  transform: rotate(135deg);
-  -webkit-transform: rotate(135deg);
-}
-
-.up {
-  transform: rotate(-135deg);
-  -webkit-transform: rotate(-135deg);
-}
-
-.down {
-  transform: rotate(45deg);
-  -webkit-transform: rotate(45deg);
 }

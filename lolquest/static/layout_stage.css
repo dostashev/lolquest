@@ -1,0 +1,77 @@
+.container {  display: grid;
+  grid-template-columns: 1fr 0.9fr 1.1fr;
+  grid-template-rows: 0.3fr 0.01fr 2.6fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "Top Top Top"
+    "Gap Gap Gap"
+    "Bottom Bottom Bottom";
+}
+
+.Top {  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "Stage Logo TeamName"
+    "Stage Logo TeamName"
+    "Stage Logo TeamName";
+  grid-area: Top;
+  background-color: var(--primary);
+}
+
+.Logo {
+    grid-area: Logo;
+}
+
+.TeamName {
+    grid-area: TeamName; 
+}
+
+.Stage {
+    grid-area: Stage;
+}
+
+.Bottom {  display: grid;
+  padding: 10px;
+  grid-template-columns: 2fr 0.03fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "Tasks Gap2 Logs"
+    "Tasks Gap2 Logs"
+    "Tasks Gap2 Logs";
+  grid-area: Bottom;
+}
+
+.Logs {
+    grid-area: Logs;
+    background-color: #d9d9d9;
+    border-color: #84878c;
+    border-style: solid;
+    border-width: thick;
+    border-radius: 10px;
+}
+
+.Tasks {
+    grid-area: Tasks; 
+    background-color: #d9d9d9;
+    border-color: #84878c;
+    border-style: solid;
+    border-width: thick;
+    border-radius: 10px;
+}
+
+.Gap2 { grid-area: Gap2; }
+
+.Gap { grid-area: Gap; }
+
+
+html, body , .container {
+  height: 100%;
+  margin: 0;
+}
+
