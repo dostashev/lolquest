@@ -11,8 +11,13 @@
 <body>
     <div class="container">
         <div class="Top">
-            <div class="TeamName" id="parent">
-                <h1 id="child" style="color: #ffffff;">{{ admin_info.name }}</h1>
+            <div class="Team">
+                <div class="TeamName" id="parent">
+                    <h1 style="color: #ffffff;" id="child">{{ admin_info.name }}</h1>
+                </div>
+                <div class="Logout" style="position: relative;">
+                    <a href="{{ url_for('logout_page') }}" style="margin: 0; position: absolute; top: 50%; left: 50%; -ms-transform: translate(-50%, -50%); transform: translate(-50%, -50%);" class="logout_c">Logout</a>
+                </div>
             </div>
             <div class="Logo" style="position: relative">
                 <img src="{{ url_for('static', filename='logo.svg') }}" class="logo">

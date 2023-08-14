@@ -156,10 +156,18 @@ def admin_page():
     admin_info = controller.get_admin_info(admin_id)
 
     return render_template(
-        "admin.html",
-        standings=standings_view,
-        admin_info=admin_info
+        "admin.html", standings=standings_view, admin_info=admin_info
     )
+
+
+@app.route("/logout", methods=["GET", "POST"])
+def logout_page():
+    if "admin_id" in session:
+        del session["admin_id"]
+    if "team_id" in session:
+        del session["team_id"]
+
+    return redirect(url_for("login_page"))
 
 
 @click.option(
@@ -187,9 +195,9 @@ def run_server(config_path: Path, event_log_path: Path, port: int):
         quest_config = OmegaConf.merge(schema, config["quest"])
 
     controller.load(config=quest_config, event_log_path=event_log_path)
-    
+
     controller.admin_start()
-    
+
     if not controller.is_game_started:
         controller.game_start()
 

@@ -42,6 +42,7 @@ class TeamInfo:
 class AdminInfo:
     name: str
 
+
 @dataclass
 class StandingsData:
     team_order: List[str]
@@ -183,12 +184,8 @@ class Controller:
             self._game_start(timestamp=timestamp)
 
     def admin_start(self):
-
         self.admin_info = {
-            admin.id: AdminInfo(
-                name=admin.name
-            )
-            for admin in self.config.admins
+            admin.id: AdminInfo(name=admin.name) for admin in self.config.admins
         }
 
     def team_enter_code(self, team_id: str, code: str):
@@ -263,7 +260,7 @@ class Controller:
             for team in self.config.teams
         }
         self.is_game_started = True
-    
+
     def _team_enter_code(self, team_id: str, code: str, timestamp: float):
         """Enter code logic"""
 

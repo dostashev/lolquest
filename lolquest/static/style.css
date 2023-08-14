@@ -134,3 +134,12 @@ input[type=submit] {
   transform: rotate(45deg);
   -webkit-transform: rotate(45deg);
 }
+
+.logout_c {
+    padding:5px 15px;
+    background: #eeeeee;
+    cursor:pointer;
+    border: 2px solid black;
+    border-radius: 7px;
+    font-size: 20px;
+}
