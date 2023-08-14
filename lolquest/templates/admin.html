@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='layout_stage.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='lupa.svg') }}">
+</head>
+<html>
+<head>
+    <title>Admin</title>
+</head>
+<body>
+    <div class="container">
+        <div class="Top">
+            <div class="TeamName" id="parent">
+                <h1 id="child" style="color: #ffffff;">{{ admin_info.name }}</h1>
+            </div>
+            <div class="Logo" style="position: relative">
+                <img src="{{ url_for('static', filename='logo.svg') }}" class="logo">
+            </div>
+            <div class="Stage" id="parent">
+                <h1 id="child" style="color: #ffffff;">Панєлька</h1>
+            </div>
+        </div>
+        <div class="Bottom">
+            <div class="Logs">
+                <!--logs-->
+            </div>
+            <div class="Tasks" style="padding:10px;">
+                {{ standings }}
+                <div style="padding-left: 5%; padding-right: 5%; font-size: 18px;">
+                    <h1>Вітаємо на адмінській стрінці Квесту</h1>
+                    <p>Тут ви можете дати чи забрати очки у команд. Це піде у колонку "бонуси". Для того, щоб забрати очки введіть негативну кількість.</p>
+                    <form method="POST">
+                        <br>
+                            <label for="team_id">ID команди</label>
+                            <input type="text" name="team_id" style="font-size: 20px">
+                        <br>
+                        <br>
+                            <label for="points">Скільки дати очок?</label>
+                            <input type="points" name="points" style="font-size: 20px">
+                        <br>
+                        <br>
+                            <label for="message">Що написати у логах?</label>
+                            <input type="message" name="message" style="font-size: 20px">
+                        <br>
+                        <br>
+                            <input type="submit" value="Дати!">
+                        <br>
+                    </form>
+                </div>
+            </div>
+            <div class="Gap2"></div>
+        </div>
+        <div class="Gap"></div>
+    </div>
+</body>
+</html>

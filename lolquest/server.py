@@ -26,8 +26,9 @@ controller = Controller()
 def start_page():
     if "team_id" in session:
         return redirect(url_for("quest_page"))
-    else:
-        return redirect(url_for("login_page"))
+    if "admin_id" in session:
+        return redirect(url_for("admin_page"))
+    return redirect(url_for("login_page"))
 
 
 @app.route("/login", methods=["GET", "POST"])
@@ -42,6 +43,13 @@ def login_page():
         ):
             session["team_id"] = team_id
             return redirect(url_for("quest_page"))
+
+        if controller.admin_login(
+            admin_id=team_id,
+            password=password,
+        ):
+            session["admin_id"] = team_id
+            return redirect(url_for("admin_page"))
 
     return render_template("start.html")
 
@@ -131,6 +139,29 @@ def standings_page():
     return render_template("standings.html", standings=standings_view)
 
 
+@app.route("/admin", methods=["GET", "POST"])
+def admin_page():
+    if "admin_id" not in session:
+        return redirect(url_for("login_page"))
+
+    with controller.lock:
+        standings_data = controller.get_standings_data()
+
+    standings_view = StandingsTableView.open_stages_from_request(
+        standings_data=standings_data,
+    )
+
+    admin_id = session["admin_id"]
+
+    admin_info = controller.get_admin_info(admin_id)
+
+    return render_template(
+        "admin.html",
+        standings=standings_view,
+        admin_info=admin_info
+    )
+
+
 @click.option(
     "-c",
     "--config_path",
@@ -156,7 +187,9 @@ def run_server(config_path: Path, event_log_path: Path, port: int):
         quest_config = OmegaConf.merge(schema, config["quest"])
 
     controller.load(config=quest_config, event_log_path=event_log_path)
-
+    
+    controller.admin_start()
+    
     if not controller.is_game_started:
         controller.game_start()
 

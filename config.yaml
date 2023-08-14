@@ -21,6 +21,14 @@ quest:
     id: team3
     password: team3p
 
+  admins:
+  - name: Admin1
+    id: admin1
+    password: admin1p
+  - name: Admin2
+    id: admin2
+    password: admin2p
+
   stages:
   - name: Етап 0
     duration: 600000

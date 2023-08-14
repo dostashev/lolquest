@@ -91,17 +91,12 @@ html, body , .container {
   margin: 0;
 }
 
-input[type=password] {
+input {
   border: 2px solid black;
   border-radius: 7px;
 }
 
-input[type=text] {
-  border: 2px solid black;
-  border-radius: 7px;
-}
-
-input[type=text]:focus {
+input:focus {
   background-color: lightblue;
 }
 
