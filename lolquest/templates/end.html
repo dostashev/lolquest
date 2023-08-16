@@ -27,7 +27,7 @@
                     <h1 style="color: #ffffff;" id="child">{{ team_info.name }}</h1>
                 </div>
                 <div class="Logout" style="position: relative;">
-                    <a href="{{ url_for('logout_page') }}" style="margin: 0; position: absolute; top: 50%; left: 50%; -ms-transform: translate(-50%, -50%); transform: translate(-50%, -50%);" class="logout_c">Logout</a>
+                    <a href="{{ url_for('logout_page') }}" class="logout">Вийти</a>
                 </div>
             </div>
             <div class="Logo" style="position: relative">
@@ -38,23 +38,25 @@
             </div>
         </div>
         <div class="Bottom">
-            <div class="Logs">
-            </div>
-            <div class="Tasks" style="padding:10px;">
-                <div style="text-align: center;">
+            <div class="Panel">
+                <div class="gray-box" style="text-align: center;">
                     <h1>Вітаємо із прибуттям на фініш!</h1>
                     <h2>Ви успішно пройшли Квест.</h2>
                 </div>
-                {{ standings }}
-                <script>
-                    window.setTimeout( function() {
-                        window.location.reload();
-                    }, 30000);
-                </script>
             </div>
-            <div class="Gap2"></div>
-        </div>
-        <div class="Gap"></div>
+            <div class="Logs"> </div>
+            <div class="Table">
+                <div class="gray-box" style="overflow:scroll; width:98.35%;">
+                    {{standings}}
+                </div>
+            </div>
     </div>
+    <div class="Gap"></div>
+    </div>
+    <script>
+        window.setTimeout( function() {
+            window.location.reload();
+        }, 30000);
+    </script>
 </body>
 </html>

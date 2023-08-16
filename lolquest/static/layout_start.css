@@ -86,3 +86,16 @@ html, body , .container {
   height: 100%;
   margin: 0;
 }
+
+label{
+    display: inline-block;
+    float: left;
+    clear: left;
+    width: 160px;
+    text-align: left;
+}
+
+input {
+  display: inline-block;
+  float: middle;
+}

@@ -1,6 +1,6 @@
 .container {  display: grid;
   grid-template-columns: 1fr 0.9fr 1.1fr;
-  grid-template-rows: 0.3fr 0.01fr 2.6fr;
+  grid-template-rows: 0.3fr 0.2fr 2.6fr;
   gap: 0px 0px;
   grid-auto-flow: row;
   grid-template-areas:
@@ -51,23 +51,34 @@
     grid-area: Stage;
 }
 
+
 .Bottom {  display: grid;
-  grid-template-columns: 1250px 10px 585px;
-  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 370px 90fr 200fr;
   gap: 0px 0px;
   grid-auto-flow: row;
   grid-template-areas:
-    "Tasks Gap2 Logs"
-    "Tasks Gap2 Logs"
-    "Tasks Gap2 Logs";
+    "Panel Panel Panel"
+    "Logs Logs Logs"
+    "Table Table Table";
   grid-area: Bottom;
+  padding: 10px;
 }
 
-.Logs { grid-area: Logs; }
+.Table {
+    grid-area: Table;
+    padding: 10px;
+}
 
-.Tasks { grid-area: Tasks; }
+.Logs {
+    grid-area: Logs;
+    padding: 10px;
+}
 
-.Gap2 { grid-area: Gap2; }
+.Panel {
+    grid-area: Panel;
+    padding: 10px;
+}
 
 .Gap { grid-area: Gap; }
 
@@ -75,4 +86,17 @@
 html, body , .container {
   height: 100%;
   margin: 0;
+}
+
+label{
+    display: inline-block;
+    float: left;
+    clear: left;
+    width: 200px;
+    text-align: left;
+}
+
+input {
+  display: inline-block;
+  float: middle;
 }

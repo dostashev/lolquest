@@ -118,6 +118,7 @@ def end_page():
 
     standings_view = StandingsTableView.open_stages_from_request(
         standings_data=standings_data,
+        override_default=[],
     )
 
     return render_template(
@@ -134,6 +135,7 @@ def standings_page():
 
     standings_view = StandingsTableView.open_stages_from_request(
         standings_data=standings_data,
+        override_default=[],
     )
 
     return render_template("standings.html", standings=standings_view)
@@ -149,6 +151,7 @@ def admin_page():
 
     standings_view = StandingsTableView.open_stages_from_request(
         standings_data=standings_data,
+        override_default=[],
     )
 
     admin_id = session["admin_id"]
@@ -156,7 +159,10 @@ def admin_page():
     admin_info = controller.get_admin_info(admin_id)
 
     return render_template(
-        "admin.html", standings=standings_view, admin_info=admin_info
+        "admin.html",
+        standings=standings_view,
+        admin_info=admin_info,
+        standings_data=controller.get_standings_data()
     )
 
 
