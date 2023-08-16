@@ -162,7 +162,7 @@ def admin_page():
         "admin.html",
         standings=standings_view,
         admin_info=admin_info,
-        standings_data=controller.get_standings_data()
+        standings_data=controller.get_standings_data(),
     )
 
 

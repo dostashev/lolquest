@@ -100,7 +100,7 @@ quest:
     hints:
     - text: 2+2
       timing: 15
-  
+
   - name: Етап 3
     duration: 60
     message: "<b>Код для сайту АФ: 5678</b>"
@@ -162,22 +162,22 @@ quest:
       max_points: 100
       scoring: *default_scoring
     - id: task_6_3
-      name: Арифметика 6.3 
+      name: Арифметика 6.3
       code: "4"
       max_points: 100
       scoring: *default_scoring
     - id: task_6_4
-      name: Арифметика 6.4 
+      name: Арифметика 6.4
       code: "4"
       max_points: 100
       scoring: *default_scoring
     - id: task_6_5
-      name: Арифметика 6.5 
+      name: Арифметика 6.5
       code: "4"
       max_points: 100
       scoring: *default_scoring
     - id: task_6_6
-      name: Арифметика 6.6 
+      name: Арифметика 6.6
       code: "4"
       max_points: 100
       scoring: *default_scoring
@@ -215,4 +215,3 @@ quest:
     hints:
     - text: 2+2
       timing: 15
-
