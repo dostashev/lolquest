@@ -100,3 +100,9 @@ input {
   display: inline-block;
   float: middle;
 }
+
+select {
+  width: 275px;
+  display: inline-block;
+  float: middle;
+}

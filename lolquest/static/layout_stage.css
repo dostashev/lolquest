@@ -52,7 +52,7 @@
 }
 
 .Bottom {  display: grid;
-  grid-template-columns: 1250px 10px 585px;
+  grid-template-columns: 66vw 0.3vw 32.7vw;
   grid-template-rows: 1fr 1fr 1fr;
   gap: 0px 0px;
   grid-auto-flow: row;

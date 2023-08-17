@@ -33,18 +33,17 @@
                     <p>Тут ви можете дати чи забрати очки у команд. Це піде у колонку "бонуси". Для того, щоб забрати очки введіть негативну кількість.</p>
                     <form method="POST">
                         <br>
-                            <label for="team_id">ID команди</label>
-                            <input list="teams" type="text" name="team_id" style="font-size: 20px">
-                            <datalist id="teams">
+                            <label for="teams" type="text" name="team_id">Виберіть команду</label>
+                            <select name="teams" id="teams">
                                 {% for team_id in standings_data.team_order %}
                                 {% set team_info = standings_data.team_info[team_id] %}
-                                <option value="{{team_id}}">{{ team_info.name }}</option>
+                                    <option value="{{team_id}}">{{ team_info.name }}</option>
                                 {% endfor %}
-                            </datalist>
+                            </select>
                         <br>
                         <br>
                             <label for="points">Скільки дати очок?</label>
-                            <input type="points" name="points" style="font-size: 20px">
+                            <input type="number" name="points" style="font-size: 20px">
                         <br>
                         <br>
                         <label for="message">Що написати у логах?  <b style="font-size:14px;">(не обов'язково)</b></label>

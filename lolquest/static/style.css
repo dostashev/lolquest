@@ -28,7 +28,7 @@ body {background-color: var(--background);}
     display: table-cell;
     vertical-align: middle;
 }
-body, head, h1, h2, h3, p, b {
+body, head, h1, h2, h3, p, b, label {
   font-family: Arial;
   color: var(--text);
 }
@@ -100,8 +100,30 @@ input:focus {
   background-color: lightblue;
 }
 
+select:focus {
+  background-color: lightblue;
+}
+
 input[type=submit] {
     padding:5px 15px;
+    background: #eeeeee;
+    cursor:pointer;
+    border: 2px solid black;
+    border-radius: 7px;
+    font-size: 20px;
+}
+
+select {
+    padding:1.5px 15px;
+    background: #eeeeee;
+    cursor:pointer;
+    border: 2px solid black;
+    border-radius: 7px;
+    font-size: 20px;
+}
+
+option {
+    padding:1.5px 15px;
     background: #eeeeee;
     cursor:pointer;
     border: 2px solid black;
