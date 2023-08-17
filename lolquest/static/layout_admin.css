@@ -54,7 +54,7 @@
 
 .Bottom {  display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 370px 90fr 200fr;
+  grid-template-rows: 230px 90fr 200fr;
   gap: 0px 0px;
   grid-auto-flow: row;
   grid-template-areas:
@@ -93,7 +93,7 @@ label{
     float: left;
     clear: left;
     width: 200px;
-    text-align: left;
+    text-align: center;
 }
 
 input {
@@ -106,3 +106,7 @@ select {
   display: inline-block;
   float: middle;
 }
+
+form ul { list-style-type: none; }
+
+form ul li { display: inline-block }

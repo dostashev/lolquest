@@ -28,11 +28,11 @@
         </div>
         <div class="Bottom">
             <div class="Panel">
-                <div style="padding-left: 5%; padding-right: 5%; padding-top:0%; font-size: 18px;" class="gray-box">
+                <div style="padding-left: 5%; padding-right: 5%; padding-top:0%; font-size: 18px; text-align: center;" class="gray-box">
                     <h1>Вітаємо на адмінській стрінці Квесту</h1>
                     <p>Тут ви можете дати чи забрати очки у команд. Це піде у колонку "бонуси". Для того, щоб забрати очки введіть негативну кількість.</p>
-                    <form method="POST">
-                        <br>
+                    <form method="POST"><ul>
+                        <li>
                             <label for="teams" type="text" name="team_id">Виберіть команду</label>
                             <select name="teams" id="teams">
                                 {% for team_id in standings_data.team_order %}
@@ -40,19 +40,19 @@
                                     <option value="{{team_id}}">{{ team_info.name }}</option>
                                 {% endfor %}
                             </select>
-                        <br>
-                        <br>
+                        </li>
+                        <li>
                             <label for="points">Скільки дати очок?</label>
                             <input type="number" name="points" style="font-size: 20px">
-                        <br>
-                        <br>
+                        </li>
+                        <li>
                         <label for="message">Що написати у логах?  <b style="font-size:14px;">(не обов'язково)</b></label>
                             <input type="message" name="message" style="font-size: 20px">
-                        <br>
-                        <br>
+                        </li>
+                        <li>
                             <input type="submit" value="Дати!">
-                        <br>
-                    </form>
+                        </li>
+                    </ul></form>
                 </div>
             </div>
             <div class="Logs">
