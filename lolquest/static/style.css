@@ -166,12 +166,10 @@ option {
     border: 2px solid black;
     border-radius: 7px;
     font-size: 20px;
-    margin: 0;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
+    margin: 10px;
+    position: relative;
+    height: 36px;
+    top: calc(50% - 18px + 5px);
 }
 
 .gray-box {
@@ -181,4 +179,26 @@ option {
     border-width: thick;
     border-radius: 10px;
     padding: 10px;
+}
+
+.code-field {
+  display: grid;
+  grid-template-rows: max-content;
+  overflow: hidden;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.code-field label {
+  /* grid- */
+  font-weight: bold;
+  font-size: 18pt;
+  margin: 10px;
+}
+
+.code-field input {
+  font-size: 18pt;
+  padding: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
 }

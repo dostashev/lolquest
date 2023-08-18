@@ -28,6 +28,12 @@
         </div>
         <div class="Bottom">
             <div class="Logs" style="padding:10px; padding-bottom:30px;">
+                <div class="gray-box code-field">
+                    <form method="POST">
+                        <label for="code">Введіть код:</label>
+                        <input type="text" name="code" type="submit">
+                    </form>
+                </div>
                 <div class="gray-box" style="padding-left: 5%; padding-right: 3%; padding-top:0%; font-size: 18px; overflow:scroll; height:100%;">
                     {% for message in team_info.messages[::-1] %}
                     <p>
@@ -48,11 +54,6 @@
                         <p id="stage_timer" style="font-size: 25px; text-align: center;"></p>
                         <div style="padding-left: 5%; padding-right: 5%; font-size: 18px;">
                             {% include stage_content %}
-                            <form method="POST">
-                                <label for="code">Введіть код:</label>
-                                <input type="text" name="code"
-                                <input type="submit" placeholder="🤔" style="font-size: 20px">
-                            </form>
                         </div>
                     </div>
                 </div>

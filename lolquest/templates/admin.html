@@ -23,25 +23,25 @@
                 <img src="{{ url_for('static', filename='logo.svg') }}" class="logo">
             </div>
             <div class="Stage" id="parent">
-                <h1 id="child" style="color: #ffffff;">Панель керування квестом</h1>
+                <h1 id="child" style="color: #ffffff;">Панель керування Квестом</h1>
             </div>
         </div>
         <div class="Bottom">
             <div class="Panel">
                 <div style="padding-left: 5%; padding-right: 5%; padding-top:0%; font-size: 18px; text-align: center;" class="gray-box">
                     <h1>Вітаємо в панелі керування Квестом</h1>
-                    <p>Тут ви можете дати чи забрати очки у команд.</p>
+                    <p>Тут ви можете надати очки командам. Для штрафу можна ввести негативну кількість.</p>
                     <form method="POST">
                         <div style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: center; gap: 10px">
-                            <label for="team_id" name="team_id">Команда:</label>
-                            <select name="team_id" id="team_id">
+                            <label for="team_id" style="font-size: 20px; margin: 10px">Команда:</label>
+                            <select name="team_id">
                                 {% for team_id in standings_data.team_info.keys() | sort %}
                                 {% set team_info = standings_data.team_info[team_id] %}
                                     <option value="{{team_id}}">{{ team_info.name }}</option>
                                 {% endfor %}
                             </select>
-                            <label for="points">Кількість балів:</label>
-                            <input type="number" step="1" name="points" id="points" style="font-size: 20px">
+                            <label for="points" style="font-size: 20px; margin: 10px">Кількість балів:</label>
+                            <input type="number" step="1" name="points" style="font-size: 20px">
                             <input type="submit" value="Надати">
                         </div>
                     </form>
