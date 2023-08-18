@@ -11,8 +11,13 @@
 <body>
     <div class="container">
         <div class="Top">
-            <div class="TeamName" id="parent">
-                <h1 id="child" style="color: #ffffff;">{{ team_info.name }}</h1>
+            <div class="Team">
+                <div class="TeamName" id="parent">
+                    <h1 style="color: #ffffff;" id="child">{{ team_info.name }}</h1>
+                </div>
+                <div class="Logout" style="position: relative;">
+                    <a href="{{ url_for('logout_page') }}" class="logout">Вийти</a>
+                </div>
             </div>
             <div class="Logo" style="position: relative">
                 <img src="{{ url_for('static', filename='logo.svg') }}" class="logo">
@@ -22,24 +27,34 @@
             </div>
         </div>
         <div class="Bottom">
-            <div class="Logs">
-                {% for message in team_info.messages[::-1] %}
-                <p>
-                    <b>{{ message.timestamp | local_time }}</b>
-                    : {{ (message.text | safe) if message.safe else message.text }}
-                </p>
-                {% endfor %}
+            <div class="Logs" style="padding:10px; padding-bottom:30px;">
+                <div class="gray-box" style="padding-left: 5%; padding-right: 3%; padding-top:0%; font-size: 18px; overflow:scroll; height:100%;">
+                    {% for message in team_info.messages[::-1] %}
+                    <p>
+                        <b>{{ message.timestamp | local_time }}</b>
+                        : {{ (message.text | safe) if message.safe else message.text }}
+                    </p>
+                    {% endfor %}
+                </div>
             </div>
-            <div class="Tasks" style="padding:10px;">
-                {{ standings }}
-                <p id="stage_timer" style="font-size: 25px; text-align: center;"></p>
-                <div style="padding-left: 5%; padding-right: 5%; font-size: 18px;">
-                    {% include stage_content %}
-                    <form method="POST">
-                        <label for="code">Введіть код:</label>
-                        <input type="text" name="code"
-                        <input type="submit" placeholder="🤔" style="font-size: 20px">
-                    </form>
+            <div class="Tasks">
+                <div style="padding:10px;">
+                    <div class="gray-box" style="overflow:scroll; width:98.35%;">
+                        {{standings}}
+                    </div>
+                </div>
+                <div style="padding:10px;">
+                    <div class="gray-box" style="width:98.35%;">
+                        <p id="stage_timer" style="font-size: 25px; text-align: center;"></p>
+                        <div style="padding-left: 5%; padding-right: 5%; font-size: 18px;">
+                            {% include stage_content %}
+                            <form method="POST">
+                                <label for="code">Введіть код:</label>
+                                <input type="text" name="code"
+                                <input type="submit" placeholder="🤔" style="font-size: 20px">
+                            </form>
+                        </div>
+                    </div>
                 </div>
             <script>
                 var stage_start_time = {{ stage_start_time }};

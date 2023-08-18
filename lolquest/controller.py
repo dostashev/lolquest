@@ -39,6 +39,11 @@ class TeamInfo:
 
 
 @dataclass
+class AdminInfo:
+    name: str
+
+
+@dataclass
 class StandingsData:
     team_order: List[str]
     team_info: Dict[str, TeamInfo]
@@ -53,6 +58,7 @@ class Controller:
     def __init__(self):
         self.lock = RLock()
         self.team_info: Dict[str, TeamInfo] = {}
+        self.admin_info: Dict[str, AdminInfo] = {}
         self.is_game_started = False
 
     def load(self, config: QuestConfig, event_log_path: Path):
@@ -110,9 +116,19 @@ class Controller:
         """Returns info for a given team"""
         return self.team_info[team_id]
 
+    def get_admin_info(self, admin_id: str):
+        """Returns info for a given admin"""
+        return self.admin_info[admin_id]
+
     def team_login(self, team_id: str, password: str):
         for team in self.config.teams:
             if team_id == team.id and password == team.password:
+                return True
+        return False
+
+    def admin_login(self, admin_id: str, password: str):
+        for admin in self.config.admins:
+            if admin_id == admin.id and password == admin.password:
                 return True
         return False
 
@@ -166,6 +182,11 @@ class Controller:
             )
 
             self._game_start(timestamp=timestamp)
+
+    def admin_start(self):
+        self.admin_info = {
+            admin.id: AdminInfo(name=admin.name) for admin in self.config.admins
+        }
 
     def team_enter_code(self, team_id: str, code: str):
         """

@@ -28,7 +28,7 @@ body {background-color: var(--background);}
     display: table-cell;
     vertical-align: middle;
 }
-body, head, h1, h2, h3, p, b {
+body, head, h1, h2, h3, p, b, label {
   font-family: Arial;
   color: var(--text);
 }
@@ -91,22 +91,39 @@ html, body , .container {
   margin: 0;
 }
 
-input[type=password] {
+input {
   border: 2px solid black;
   border-radius: 7px;
 }
 
-input[type=text] {
-  border: 2px solid black;
-  border-radius: 7px;
+input:focus {
+  background-color: lightblue;
 }
 
-input[type=text]:focus {
+select:focus {
   background-color: lightblue;
 }
 
 input[type=submit] {
     padding:5px 15px;
+    background: #eeeeee;
+    cursor:pointer;
+    border: 2px solid black;
+    border-radius: 7px;
+    font-size: 20px;
+}
+
+select {
+    padding:1.5px 15px;
+    background: #eeeeee;
+    cursor:pointer;
+    border: 2px solid black;
+    border-radius: 7px;
+    font-size: 20px;
+}
+
+option {
+    padding:1.5px 15px;
     background: #eeeeee;
     cursor:pointer;
     border: 2px solid black;
@@ -138,4 +155,30 @@ input[type=submit] {
 .section-icon.open i {
   transform: rotate(45deg);
   -webkit-transform: rotate(45deg);
+}
+
+.logout {
+    color: black;
+    text-decoration: none;
+    padding:5px 15px;
+    background: #eeeeee;
+    cursor:pointer;
+    border: 2px solid black;
+    border-radius: 7px;
+    font-size: 20px;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.gray-box {
+    background-color: #d9d9d9;
+    border-color: #84878c;
+    border-style: solid;
+    border-width: thick;
+    border-radius: 10px;
+    padding: 10px;
 }

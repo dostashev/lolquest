@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='layout_admin.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='lupa.svg') }}">
+</head>
+<html>
+<head>
+    <title>Admin</title>
+</head>
+<body>
+    <div class="container">
+        <div class="Top">
+            <div class="Team">
+                <div class="TeamName" id="parent">
+                    <h1 style="color: #ffffff;" id="child">{{ admin_info.name }}</h1>
+                </div>
+                <div class="Logout" style="position: relative;">
+                    <a href="{{ url_for('logout_page') }}" class="logout">Вийти</a>
+                </div>
+            </div>
+            <div class="Logo" style="position: relative">
+                <img src="{{ url_for('static', filename='logo.svg') }}" class="logo">
+            </div>
+            <div class="Stage" id="parent">
+                <h1 id="child" style="color: #ffffff;">Панель керування квестом</h1>
+            </div>
+        </div>
+        <div class="Bottom">
+            <div class="Panel">
+                <div style="padding-left: 5%; padding-right: 5%; padding-top:0%; font-size: 18px; text-align: center;" class="gray-box">
+                    <h1>Вітаємо на адмінській стрінці Квесту</h1>
+                    <p>Тут ви можете дати чи забрати очки у команд. Це піде у колонку "бонуси". Для того, щоб забрати очки введіть негативну кількість.</p>
+                    <form method="POST"><ul>
+                        <li>
+                            <label for="teams" type="text" name="team_id">Виберіть команду</label>
+                            <select name="teams" id="teams">
+                                {% for team_id in standings_data.team_order %}
+                                {% set team_info = standings_data.team_info[team_id] %}
+                                    <option value="{{team_id}}">{{ team_info.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </li>
+                        <li>
+                            <label for="points">Скільки дати очок?</label>
+                            <input type="number" name="points" style="font-size: 20px">
+                        </li>
+                        <li>
+                        <label for="message">Що написати у логах?  <b style="font-size:14px;">(не обов'язково)</b></label>
+                            <input type="message" name="message" style="font-size: 20px">
+                        </li>
+                        <li>
+                            <input type="submit" value="Дати!">
+                        </li>
+                    </ul></form>
+                </div>
+            </div>
+            <div class="Logs">
+                <div class="gray-box" style="padding-left: 5%; padding-right: 5%; padding-top:0%; font-size: 18px; overflow:scroll; height:300px;">
+                    <!--scrollable logs-->
+                </div>
+            </div>
+            <div class="Table">
+                <div class="gray-box" style="overflow:scroll; width:98.35%;">
+                    {{standings}}
+                </div>
+            </div>
+        <div class="Gap"></div>
+    </div>
+</body>
+</html>

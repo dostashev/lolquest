@@ -22,8 +22,13 @@
     </div>
     <div class="container">
         <div class="Top">
-            <div class="TeamName" id="parent">
-                <h1 id="child" style="color: #ffffff;">{{team_info.name}}</h1>
+            <div class="Team">
+                <div class="TeamName" id="parent">
+                    <h1 style="color: #ffffff;" id="child">{{ team_info.name }}</h1>
+                </div>
+                <div class="Logout" style="position: relative;">
+                    <a href="{{ url_for('logout_page') }}" class="logout">Вийти</a>
+                </div>
             </div>
             <div class="Logo" style="position: relative">
                 <img src="{{ url_for('static', filename='logo.svg') }}" class="logo">
@@ -33,23 +38,25 @@
             </div>
         </div>
         <div class="Bottom">
-            <div class="Logs">
-            </div>
-            <div class="Tasks" style="padding:10px;">
-                <div style="text-align: center;">
+            <div class="Panel">
+                <div class="gray-box" style="text-align: center;">
                     <h1>Вітаємо із прибуттям на фініш!</h1>
                     <h2>Ви успішно пройшли Квест.</h2>
                 </div>
-                {{ standings }}
-                <script>
-                    window.setTimeout( function() {
-                        window.location.reload();
-                    }, 30000);
-                </script>
             </div>
-            <div class="Gap2"></div>
-        </div>
-        <div class="Gap"></div>
+            <div class="Logs"> </div>
+            <div class="Table">
+                <div class="gray-box" style="overflow:scroll; width:98.35%;">
+                    {{standings}}
+                </div>
+            </div>
     </div>
+    <div class="Gap"></div>
+    </div>
+    <script>
+        window.setTimeout( function() {
+            window.location.reload();
+        }, 30000);
+    </script>
 </body>
 </html>

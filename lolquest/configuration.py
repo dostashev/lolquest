@@ -14,6 +14,13 @@ class TeamConfig:
 
 
 @dataclass
+class AdminConfig:
+    name: str = MISSING
+    id: str = MISSING
+    password: str = MISSING
+
+
+@dataclass
 class TaskScoringConfig:
     completed_before: float = MISSING
     percent: int = MISSING
@@ -47,4 +54,5 @@ class StageConfig:
 @dataclass
 class QuestConfig:
     teams: List[TeamConfig] = MISSING
+    admins: List[AdminConfig] = MISSING
     stages: List[StageConfig] = MISSING

@@ -48,7 +48,7 @@ class StandingsTableView:
             if override_default is not None:
                 open_stages = override_default
             else:
-                open_stages = list(range(len(standings_data.stages) + 1))
+                open_stages = []
         else:
             open_stages = list(map(int, open_stages.split(",")))
 
