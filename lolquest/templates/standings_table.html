@@ -57,7 +57,7 @@
             {% set alpha = 0 if (completion is none or task.max_points == 0) else 1 %}
             <td data-section="{{ stage_index }}" style="background-color: rgba(0, {{green}}, 0, {{alpha}});" {{ (not stage_is_open) | hidden_if }}>
                 {% if completion is not none %}
-                    + ({{ completion.time_since_stage_entered|format_mmss }}, {{ completion.points }} pts)
+                    + ({{ completion.time_since_stage_entered|format_mmss }}, {{ completion.points }} б.)
                 {% endif %}
             </td>
             {% endfor %}
