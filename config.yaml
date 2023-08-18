@@ -48,7 +48,7 @@ quest:
 
   - name: Етап 1
     duration: 2700
-    message: "<b>Інтеракивна частина квесту: <a src='https://vseosvita.ua/webquest/start/s/19358/3608570-657a816a'>vseosvita.ua</a></b>"
+    message: "<b>Інтерактивна частина квесту: <a href='https://vseosvita.ua/webquest/start/s/19358/3608570-657a816a'>vseosvita.ua</a></b>"
 
     tasks:
     - id: task_1_1

@@ -31,6 +31,7 @@ class TeamInfo:
     name: str
     stage: int
     stage_entered_timestamps: List[float]
+    bonus_points: int = 0
     total_points: int = 0
     total_time: float = 0
     finished: bool = False
@@ -183,11 +184,6 @@ class Controller:
 
             self._game_start(timestamp=timestamp)
 
-    def admin_start(self):
-        self.admin_info = {
-            admin.id: AdminInfo(name=admin.name) for admin in self.config.admins
-        }
-
     def team_enter_code(self, team_id: str, code: str):
         """
         Team enters code
@@ -209,6 +205,29 @@ class Controller:
             return self._team_enter_code(
                 team_id=team_id,
                 code=code,
+                timestamp=timestamp,
+            )
+
+    def add_bonus(self, admin_id: str, team_id: str, points: int):
+        """
+        Add bonus (maybe negative) to a team's points
+        """
+
+        with self.lock:
+            timestamp = time.time()
+
+            self._log_event(
+                "add_bonus",
+                admin_id=admin_id,
+                team_id=team_id,
+                points=points,
+                timestamp=timestamp,
+            )
+
+            return self._add_bonus(
+                admin_id=admin_id,
+                team_id=team_id,
+                points=points,
                 timestamp=timestamp,
             )
 
@@ -248,6 +267,7 @@ class Controller:
         MAPPING = {
             "team_enter_code": self._team_enter_code,
             "game_start": self._game_start,
+            "add_bonus": self._add_bonus,
         }
         for event in self.event_log:
             MAPPING[event["event"]](timestamp=event["timestamp"], **event["params"])
@@ -258,6 +278,9 @@ class Controller:
                 name=team.name, stage=0, stage_entered_timestamps=[timestamp]
             )
             for team in self.config.teams
+        }
+        self.admin_info = {
+            admin.id: AdminInfo(name=admin.name) for admin in self.config.admins
         }
         self.is_game_started = True
 
@@ -309,6 +332,24 @@ class Controller:
         stage_upped = self.up_stage_if_needed(team_id=team_id, timestamp=timestamp)
 
         return stage_upped
+
+    def _add_bonus(self, admin_id: str, team_id: str, points: int, timestamp: float):
+        team_info = self.team_info[team_id]
+        team_info.bonus_points += points
+        team_info.total_points += points
+
+        if points >= 0:
+            message_text = f"<b>Вам нараховано бонус {points} балів</b>"
+        else:
+            message_text = f"<b>Вам нараховано штраф {points} балів</b>"
+
+        team_info.messages.append(
+            Message(
+                timestamp=timestamp,
+                text=message_text,
+                safe=True,
+            )
+        )
 
     @staticmethod
     def _get_points_for_completed_task(

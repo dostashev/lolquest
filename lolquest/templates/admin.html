@@ -29,35 +29,22 @@
         <div class="Bottom">
             <div class="Panel">
                 <div style="padding-left: 5%; padding-right: 5%; padding-top:0%; font-size: 18px; text-align: center;" class="gray-box">
-                    <h1>Вітаємо на адмінській стрінці Квесту</h1>
-                    <p>Тут ви можете дати чи забрати очки у команд. Це піде у колонку "бонуси". Для того, щоб забрати очки введіть негативну кількість.</p>
-                    <form method="POST"><ul>
-                        <li>
-                            <label for="teams" type="text" name="team_id">Виберіть команду</label>
-                            <select name="teams" id="teams">
-                                {% for team_id in standings_data.team_order %}
+                    <h1>Вітаємо в панелі керування Квестом</h1>
+                    <p>Тут ви можете дати чи забрати очки у команд.</p>
+                    <form method="POST">
+                        <div style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: center; gap: 10px">
+                            <label for="team_id" name="team_id">Команда:</label>
+                            <select name="team_id" id="team_id">
+                                {% for team_id in standings_data.team_info.keys() | sort %}
                                 {% set team_info = standings_data.team_info[team_id] %}
                                     <option value="{{team_id}}">{{ team_info.name }}</option>
                                 {% endfor %}
                             </select>
-                        </li>
-                        <li>
-                            <label for="points">Скільки дати очок?</label>
-                            <input type="number" name="points" style="font-size: 20px">
-                        </li>
-                        <li>
-                        <label for="message">Що написати у логах?  <b style="font-size:14px;">(не обов'язково)</b></label>
-                            <input type="message" name="message" style="font-size: 20px">
-                        </li>
-                        <li>
-                            <input type="submit" value="Дати!">
-                        </li>
-                    </ul></form>
-                </div>
-            </div>
-            <div class="Logs">
-                <div class="gray-box" style="padding-left: 5%; padding-right: 5%; padding-top:0%; font-size: 18px; overflow:scroll; height:300px;">
-                    <!--scrollable logs-->
+                            <label for="points">Кількість балів:</label>
+                            <input type="number" step="1" name="points" id="points" style="font-size: 20px">
+                            <input type="submit" value="Надати">
+                        </div>
+                    </form>
                 </div>
             </div>
             <div class="Table">

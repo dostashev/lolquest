@@ -69,6 +69,7 @@ def quest_page():
     if request.method == "POST":
         code = request.form["code"]
         stage_upped |= controller.team_enter_code(team_id=team_id, code=code)
+        return redirect(url_for("quest_page"))
 
     if team_info.finished:
         return redirect(url_for("end_page"))
@@ -144,14 +145,27 @@ def admin_page():
     if "admin_id" not in session:
         return redirect(url_for("login_page"))
 
+    admin_id = session["admin_id"]
+
+    if request.method == "POST":
+        try:
+            team_id = request.form["team_id"]
+            points = int(request.form["points"])
+            controller.add_bonus(
+                admin_id=admin_id,
+                team_id=team_id,
+                points=points,
+            )
+        except (KeyError, ValueError):
+            pass
+        return redirect(url_for("admin_page"))
+
     with controller.lock:
         standings_data = controller.get_standings_data()
 
     standings_view = StandingsTableView.open_stages_from_request(
         standings_data=standings_data,
     )
-
-    admin_id = session["admin_id"]
 
     admin_info = controller.get_admin_info(admin_id)
 
@@ -198,8 +212,6 @@ def run_server(config_path: Path, event_log_path: Path, port: int):
         quest_config = OmegaConf.merge(schema, config["quest"])
 
     controller.load(config=quest_config, event_log_path=event_log_path)
-
-    controller.admin_start()
 
     if not controller.is_game_started:
         controller.game_start()

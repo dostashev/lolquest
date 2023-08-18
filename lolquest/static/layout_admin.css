@@ -54,13 +54,12 @@
 
 .Bottom {  display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 230px 90fr 200fr;
+  grid-template-rows: max-content;
   gap: 0px 0px;
   grid-auto-flow: row;
   grid-template-areas:
-    "Panel Panel Panel"
-    "Logs Logs Logs"
-    "Table Table Table";
+    "Table Table Table"
+    "Panel Panel Panel";
   grid-area: Bottom;
   padding: 10px;
 }
