@@ -1,10 +1,7 @@
 _defaults:
   default_scoring: &default_scoring
-  # 50% for completion + 50% for completing before hint
-  - completed_before: 15
-    percent: 50
-  - completed_before: 60
-    percent: 50
+  - completed_before: 2700
+    percent: 100
 
 # replace with actual key
 flask_secret_key: topsecret
@@ -20,14 +17,20 @@ quest:
   - name: Команда 3
     id: team3
     password: team3p
+  - name: Команда 4
+    id: team4
+    password: team4p
+  - name: Команда 5
+    id: team5
+    password: team5p
+  - name: Команда 6
+    id: team6
+    password: team6p
 
   admins:
-  - name: Admin1
-    id: admin1
-    password: admin1p
-  - name: Admin2
-    id: admin2
-    password: admin2p
+  - name: Admin
+    id: admin
+    password: admin
 
   stages:
   - name: Етап 0
@@ -37,15 +40,15 @@ quest:
     - id: task_0_1
       name: Початок
       code: glhf
-      max_points: 1
+      max_points: 0
       scoring:
       - completed_before: 600000
         percent: 100
       counts_towards_total_time: False
 
   - name: Етап 1
-    duration: 60
-    message: "<b>Код для сайту АФ: 1234</b>"
+    duration: 2700
+    message: "<b>Інтеракивна частина квесту: <a src='https://vseosvita.ua/webquest/start/s/19358/3608570-657a816a'>vseosvita.ua</a></b>"
 
     tasks:
     - id: task_1_1
@@ -66,16 +69,164 @@ quest:
       timing: 30
 
   - name: Етап 2
-    duration: 60
-    message: "<b>Код для сайту АФ: 5678</b>"
+    duration: 2700
+    message: "<b>Код від порталу на Етапі 1: ...</b>"
 
     tasks:
     - id: task_2_1
-      name: Арифметика 2
-      code: "4"
-      max_points: 100
+      name: №1
+      code: "Жовтий_Феррарі"
+      max_points: 50
+      scoring: *default_scoring
+    - id: task_2_2
+      name: №2
+      code: "фізика"
+      max_points: 20
+      scoring: *default_scoring
+    - id: task_2_3
+      name: №3
+      code: "247"
+      max_points: 50
+      scoring: *default_scoring
+    - id: task_2_4
+      name: №4
+      code: "нуль"
+      max_points: 20
+      scoring: *default_scoring
+    - id: task_2_5
+      name: №5
+      code: "ВДЛПФКФН"
+      max_points: 70
+      scoring: *default_scoring
+    - id: task_2_6
+      name: №6
+      code: "-7"
+      max_points: 70
+      scoring: *default_scoring
+    - id: task_2_7
+      name: №7
+      code: "карданний_вал"
+      max_points: 20
+      scoring: *default_scoring
+    - id: portal_2
+      name: Портал
+      code: "Паскаліна_не_відьма"
+      max_points: 0
       scoring: *default_scoring
 
-    hints:
-    - text: 2+2
-      timing: 15
+  - name: Етап 3
+    duration: 2700
+    message: "<b>Етап 2: Портал у Рапунцель, ключ: Ньютон+Лейбніц=інтеграл</b>"
+
+    tasks:
+    - id: task_3_1
+      name: №1
+      code: "loooooooooool2023"
+      max_points: 70
+      scoring: *default_scoring
+    - id: task_3_2
+      name: №2
+      code: "philox2015"
+      max_points: 20
+      scoring: *default_scoring
+    - id: task_3_3
+      name: №3
+      code: "takeMeWithYouPlease"
+      max_points: 40
+      scoring: *default_scoring
+    - id: task_3_4
+      name: №4
+      code: "gaussTop1ever"
+      max_points: 40
+      scoring: *default_scoring
+    - id: task_3_5
+      name: №5
+      code: "sudoku228"
+      max_points: 70
+      scoring: *default_scoring
+    - id: task_3_6
+      name: №6
+      code: "5bulls0cows"
+      max_points: 60
+      scoring: *default_scoring
+    - id: portal_3
+      name: Портал
+      code: "klyatiPogramistu"
+      max_points: 0
+      scoring: *default_scoring
+
+  - name: Етап 6
+    duration: 2700
+    message: "<b>Код від порталу на Етапі 5: ...</b>"
+
+    tasks:
+    - id: task_6_1
+      name: №1
+      code: "author"
+      max_points: 15
+      scoring: *default_scoring
+    - id: task_6_2
+      name: №2
+      code: "pink"
+      max_points: 15
+      scoring: *default_scoring
+    - id: task_6_3
+      name: №3
+      code: "troll"
+      max_points: 15
+      scoring: *default_scoring
+    - id: task_6_4
+      name: №4
+      code: "divide"
+      max_points: 15
+      scoring: *default_scoring
+    - id: task_6_5
+      name: №5
+      code: "math"
+      max_points: 15
+      scoring: *default_scoring
+    - id: task_6_6
+      name: №6
+      code: "never"
+      max_points: 15
+      scoring: *default_scoring
+    - id: task_6_7
+      name: №7
+      code: "bone"
+      max_points: 15
+      scoring: *default_scoring
+    - id: task_6_8
+      name: №8
+      code: "dog"
+      max_points: 15
+      scoring: *default_scoring
+    - id: task_6_9
+      name: №9
+      code: "equation"
+      max_points: 15
+      scoring: *default_scoring
+    - id: task_6_10
+      name: №10
+      code: "twelve"
+      max_points: 15
+      scoring: *default_scoring
+    - id: task_6_11
+      name: №11
+      code: "laugh"
+      max_points: 15
+      scoring: *default_scoring
+    - id: task_6_12
+      name: №12
+      code: "equals"
+      max_points: 15
+      scoring: *default_scoring
+    - id: task_6_13
+      name: №13
+      code: "twelve author troll dog bone laugh math equation equals divide pink never"
+      max_points: 120
+      scoring: *default_scoring
+    - id: portal_6
+      name: Портал
+      code: "the_final_portal"
+      max_points: 0
+      scoring: *default_scoring
