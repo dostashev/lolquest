@@ -50,7 +50,10 @@ class StandingsTableView:
             else:
                 open_stages = []
         else:
-            open_stages = list(map(int, open_stages.split(",")))
+            try:
+                open_stages = list(map(int, open_stages.split(",")))
+            except ValueError:
+                open_stages = []
 
         return StandingsTableView(
             standings_data=standings_data,

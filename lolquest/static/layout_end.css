@@ -136,12 +136,10 @@
 
 .Bottom {  display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 170px 0px 0px;
+  grid-template-rows: max-content;
   gap: 0px 0px;
-  grid-auto-flow: row;
   grid-template-areas:
     "Panel Panel Panel"
-    "Logs Logs Logs"
     "Table Table Table";
   grid-area: Bottom;
   padding: 10px;
@@ -149,11 +147,6 @@
 
 .Table {
     grid-area: Table;
-    padding: 10px;
-}
-
-.Logs {
-    grid-area: Logs;
     padding: 10px;
 }
 
