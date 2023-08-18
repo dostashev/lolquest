@@ -15,6 +15,7 @@ from lolquest.utils import synchronized
 from lolquest.views import HintView
 from lolquest.views import StandingsTableView
 from omegaconf import OmegaConf
+import waitress
 import yaml
 
 
@@ -205,7 +206,12 @@ def logout_page():
     type=int,
     default=5000,
 )
-def run_server(config_path: Path, event_log_path: Path, port: int):
+@click.option(
+    "-d",
+    "--debug",
+    is_flag=True,
+)
+def run_server(config_path: Path, event_log_path: Path, port: int, debug: bool):
     with open(config_path) as f:
         config = yaml.full_load(f)
         schema = OmegaConf.create(QuestConfig())
@@ -220,7 +226,10 @@ def run_server(config_path: Path, event_log_path: Path, port: int):
 
     register_filters(app)
 
-    app.run(host="0.0.0.0", port=port, debug=True, extra_files=[config_path])
+    if debug:
+        app.run(host="0.0.0.0", port=port, debug=True, extra_files=[config_path])
+    else:
+        waitress.serve(app, host="0.0.0.0", port=port)
 
 
 if __name__ == "__main__":
