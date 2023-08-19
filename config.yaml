@@ -303,37 +303,37 @@ quest:
 
     tasks:
     - id: task_3_1
-      name: №1
+      name: Ключ+замок
       code: "Жовтий_Феррарі"
       max_points: 50
       scoring: *default_scoring
     - id: task_3_2
-      name: №2
+      name: Метр квадратний
       code: "фізика"
       max_points: 20
       scoring: *default_scoring
     - id: task_3_3
-      name: №3
+      name: Площа тризуба
       code: "247"
       max_points: 50
       scoring: *default_scoring
     - id: task_3_4
-      name: №4
+      name: Кількість коренів
       code: "нуль"
       max_points: 20
       scoring: *default_scoring
     - id: task_3_5
-      name: №5
-      code: "ВДЛПФКФН"
+      name: Завдання з портретами
+      code: "занадто_круті"
       max_points: 70
       scoring: *default_scoring
     - id: task_3_6
-      name: №6
-      code: "-7"
+      name: Рівняння в координатах
+      code: "теорема_Вієта"
       max_points: 70
       scoring: *default_scoring
     - id: task_3_7
-      name: №7
+      name: Шарада
       code: "карданний_вал"
       max_points: 20
       scoring: *default_scoring
