@@ -182,23 +182,23 @@ option {
 }
 
 .code-field {
-  display: grid;
-  grid-template-rows: max-content;
-  overflow: hidden;
+  display: flex;
+  flex-wrap: wrap;
+  overflow: auto;
   padding: 10px;
   margin-bottom: 10px;
 }
 
 .code-field label {
-  /* grid- */
   font-weight: bold;
   font-size: 18pt;
   margin: 10px;
+  margin-left: 0;
 }
 
 .code-field input {
+  flex-grow: 1;
   font-size: 18pt;
   padding: 10px;
-  margin-left: 10px;
-  margin-right: 10px;
+  min-width: 0;
 }
