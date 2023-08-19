@@ -56,3 +56,4 @@ class QuestConfig:
     teams: List[TeamConfig] = MISSING
     admins: List[AdminConfig] = MISSING
     stages: List[StageConfig] = MISSING
+    case_sensitive_codes: bool = False

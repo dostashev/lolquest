@@ -298,7 +298,12 @@ class Controller:
         code_accepted = False
 
         for task in stage.tasks:
-            if task.code == code and task.id not in team_info.completed_tasks:
+            if self.config.case_sensitive_codes:
+                code_matched = task.code == code
+            else:
+                code_matched = task.code.lower() == code.lower()
+
+            if code_matched and task.id not in team_info.completed_tasks:
                 points = self._get_points_for_completed_task(
                     task_config=task,
                     time_since_stage_entered=time_since_stage_entered,
