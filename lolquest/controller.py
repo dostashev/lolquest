@@ -292,6 +292,8 @@ class Controller:
         if team_info.finished:
             return False
 
+        self.up_stage_if_needed(team_id=team_id, timestamp=timestamp)
+
         stage = self.config.stages[team_info.stage]
         time_since_stage_entered = timestamp - team_info.stage_entered_timestamps[-1]
 
