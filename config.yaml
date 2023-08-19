@@ -521,6 +521,6 @@ quest:
       scoring: *default_scoring
     - id: portal_6
       name: Портал
-      code: "the_final_portal"
+      code: "666"
       max_points: 0
       scoring: *default_scoring
