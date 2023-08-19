@@ -1,13 +1,31 @@
 <!DOCTYPE html>
 <head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='layout_standings.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='lupa.svg') }}">
 </head>
 <html>
 <head>
-    <title>Результати</title>
+    <title>Admin</title>
 </head>
 <body>
-    {{ standings }}
+    <div class="container">
+        <div class="Top">
+            <div class="Logo" style="position: relative">
+                <img src="{{ url_for('static', filename='logo.svg') }}" class="logo">
+            </div>
+            <div class="Stage" id="parent">
+                <h1 id="child" style="color: #ffffff;">Результати</h1>
+            </div>
+        </div>
+        <div class="Bottom">
+            <div class="Table">
+                <div class="gray-box" style="overflow:scroll; width:98.35%;">
+                    {{standings}}
+                </div>
+            </div>
+        <div class="Gap"></div>
+    </div>
     <script>
         window.setTimeout( function() {
             window.location.reload();
