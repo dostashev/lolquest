@@ -85,7 +85,7 @@ quest:
 
   - name: Етап 1
     duration: 2700
-    message: "<b>Інтерактивна частина квесту: <a href='https://vseosvita.ua/webquest/start/s/19358/3608570-657a816a'>vseosvita.ua</a></b>"
+    message: "<b>Перша частина Квесту: <a href='https://vseosvita.ua/webquest/start/s/19428/3608570-b46a0f26'>посилання</a></b>"
 
     tasks:
     - id: task_1_1
@@ -195,6 +195,7 @@ quest:
 
   - name: Етап 2
     duration: 2700
+    message: "<b>Етап 1: Портал на емблемі скарабея, ключ: Піфагор+Боржомі=Бог_Їжі</b>"
 
     tasks:
     - id: task_2_1
@@ -299,7 +300,7 @@ quest:
 
   - name: Етап 3
     duration: 2700
-    message: "<b>Друга частина Квесту: <a href='https://vseosvita.ua/webquest/start/s/19358/3608570-657a816a'>vseosvita.ua</a> <br> Етап 2: Портал на телевізорі, ключ: Ліна_Паскаліна</b>"
+    message: "<b>Друга частина Квесту: <a href='https://vseosvita.ua/webquest/start/s/19358/3608570-657a816a'>посилання</a> <br> Етап 2: Портал на телевізорі, ключ: Ліна_Паскаліна</b>"
 
     tasks:
     - id: task_3_1
