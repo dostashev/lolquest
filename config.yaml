@@ -7,6 +7,11 @@ _defaults:
     percent: 50
   - completed_before: 2700
     percent: 50
+  50_percent_before_20: &50_percent_before_20
+  - completed_before: 1200
+    percent: 50
+  - completed_before: 2700
+    percent: 50
   50_percent_before_35: &50_percent_before_35
   - completed_before: 2100
     percent: 50
@@ -155,7 +160,7 @@ quest:
     - id: portal_1
       name: Портал
       code: "Гурман*д*"
-      max_points: 0
+      max_points: 10
       scoring: *default_scoring
 
     hints:
@@ -192,15 +197,109 @@ quest:
     duration: 2700
 
     tasks:
-    - id: portal_2
-      name: "Портал"
-      code: "portal_2"
-      max_points: 0
+    - id: task_2_1
+      name: №1
+      code: "23"
+      max_points: 20
+      scoring:
+      - completed_before: 1200
+        percent: 75
+      - completed_before: 2700
+        percent: 25
+    - id: task_2_2
+      name: №2
+      code: "210391,206"
+      max_points: 25
+      scoring:
+      - completed_before: 1200
+        percent: 60
+      - completed_before: 2700
+        percent: 40
+    - id: task_2_3
+      name: №3
+      code: "Дзеркальце"
+      max_points: 30
+      scoring: *34_percent_before_20_30
+    - id: task_2_4
+      name: №4
+      code: "The_Times"
+      max_points: 20
+      scoring: *50_percent_before_20
+    - id: task_2_5
+      name: №5
+      code: "Пі"
+      max_points: 10
+      scoring: *50_percent_before_20
+    - id: task_2_6
+      name: №6
+      code: "Каспій"
+      max_points: 30
+      scoring: *50_percent_before_35
+    - id: task_2_7
+      name: №7
+      code: "напій"
+      max_points: 30
+      scoring: *50_percent_before_35
+    - id: task_2_8
+      name: №8
+      code: "Паскаль"
+      max_points: 30
+      scoring: *50_percent_before_35
+    - id: task_2_9
+      name: №9
+      code: "Пікассо"
+      max_points: 30
+      scoring: *50_percent_before_35
+    - id: task_2_10
+      name: №10
+      code: "спосіб"
+      max_points: 30
+      scoring: *50_percent_before_35
+    - id: task_2_11
+      name: №11
+      code: "піна"
+      max_points: 30
+      scoring: *50_percent_before_35
+    - id: task_2_12
+      name: Фінал
+      code: 'Навіть-"Паскаліна"-нам-не-потрібна-коли-все-настільки-ізі-пізі'
+      max_points: 5
       scoring: *default_scoring
+    - id: portal_2
+      name: Портал
+      code: "The_true_crime"
+      max_points: 10
+      scoring: *default_scoring
+
+    hints:
+    - text: "Це дуже відомі вирази одного з філософів, але десь вони змінені. Хмм, а як бінарне обозначення правди та брехні можна перевести у число..."
+      timing: 1200
+    - text: "Відповідь: 210391,206"
+      timing: 1200
+    - text: "так, ні, так, ні, так, так, ні, так. Чи здогадаєтесь як це стосується до завдання?"
+      timing: 1200
+    - text: "20-19+35-145+39+90-21-1+13=11"
+      timing: 1800
+    - text: "У інженера ділове взуття, у коваля сандалі. Що залишається?"
+      timing: 1200
+    - text: "Хммм, а які цікаві константи знаєте ви? Такі, щоб вони записувались літерою..."
+      timing: 1200
+    - text: '"К" літері "А" приставили "спій"'
+      timing: 2100
+    - text: '"На" "пі" строїть "й". Цікаво, що це означає...'
+      timing: 2100
+    - text: 'Пі - і + Аска (героїня одного з найвідоміших мультфільмів) + нота "соль" - ль.'
+      timing: 2100
+    - text: "пі + касса, але остання літера стала о."
+      timing: 2100
+    - text: "с + пі - і + оса - а + пі - п + б."
+      timing: 2100
+    - text: '"Пі" стоїть "на" чомусь.'
+      timing: 2100
 
   - name: Етап 3
     duration: 2700
-    message: "<b>Друга частина Квесту: <a href='https://vseosvita.ua/webquest/start/s/19358/3608570-657a816a'>vseosvita.ua</a></b>"
+    message: "<b>Друга частина Квесту: <a href='https://vseosvita.ua/webquest/start/s/19358/3608570-657a816a'>vseosvita.ua</a> <br> Етап 2: Портал на телевізорі, ключ: Ліна_Паскаліна</b>"
 
     tasks:
     - id: task_3_1
@@ -352,7 +451,7 @@ quest:
 
   - name: Етап 6
     duration: 2700
-    message: "<b>Етап 5: Портал на лампі справа, ключ: dostatnioMatematuku</b>"
+    message: "<b>Етап 5: Портал на рубіні зліва, ключ: wow640813</b>"
 
     tasks:
     - id: task_6_1
