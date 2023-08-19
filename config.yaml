@@ -17,6 +17,23 @@ _defaults:
     percent: 50
   - completed_before: 2700
     percent: 50
+  34_percent_before_20_30: &34_percent_before_20_30
+  - completed_before: 1200
+    percent: 34
+  - completed_before: 1800
+    percent: 33
+  - completed_before: 2700
+    percent: 33
+  34_percent_before_30: &34_percent_before_30
+  - completed_before: 1800
+    percent: 34
+  - completed_before: 2700
+    percent: 66
+  75_percent_before_35: &75_percent_before_35
+  - completed_before: 2100
+    percent: 75
+  - completed_before: 2700
+    percent: 25
 
 # replace with actual key
 flask_secret_key: topsecret
@@ -67,21 +84,109 @@ quest:
 
     tasks:
     - id: task_1_1
-      name: Арифметика 1
-      code: "4"
-      max_points: 200
-      scoring: *default_scoring
+      name: №1
+      code: "186624"
+      max_points: 30
+      scoring: *34_percent_before_20_30
     - id: task_1_2
-      name: Логіка
-      code: "і"
-      max_points: 100
+      name: №2
+      code: "14"
+      max_points: 30
+      scoring: *34_percent_before_30
+    - id: task_1_3
+      name: №3
+      code: "2518114"
+      max_points: 30
+      scoring: *34_percent_before_30
+    - id: task_1_4
+      name: №4
+      code: "47"
+      max_points: 30
+      scoring: *34_percent_before_20_30
+    - id: task_1_5
+      name: №5
+      code: "Свята"
+      max_points: 20
+      scoring: *75_percent_before_35
+    - id: task_1_6
+      name: №6
+      code: "Бог"
+      max_points: 20
+      scoring: *75_percent_before_35
+    - id: task_1_7
+      name: №7
+      code: "Одяг"
+      max_points: 20
+      scoring: *75_percent_before_35
+    - id: task_1_8
+      name: №8
+      code: "Ноги"
+      max_points: 20
+      scoring: *75_percent_before_35
+    - id: task_1_9
+      name: №9
+      code: "трійка"
+      max_points: 20
+      scoring:
+      - completed_before: 2100
+        percent: 25
+      - completed_before: 2400
+        percent: 50
+      - completed_before: 2700
+        percent: 25
+    - id: task_1_10
+      name: №10
+      code: "Штані"
+      max_points: 20
+      scoring:
+      - completed_before: 2520
+        percent: 75
+      - completed_before: 2700
+        percent: 25
+    - id: task_1_11
+      name: №11
+      code: "Піфагор"
+      max_points: 50
+      scoring:
+      - completed_before: 2580
+        percent: 70
+      - completed_before: 2700
+        percent: 30
+    - id: portal_1
+      name: Портал
+      code: "Гурман*д*"
+      max_points: 0
       scoring: *default_scoring
 
     hints:
-    - text: '<img src="data:image/gif;base64,R0lGODlhNgAmAPcAAAAAAAICAgMDAwYGBgcHBwgICAoKCgwMDA0NDQ4ODg8PDxAQEBISEhQUFBoaGhsbGx8fHyAgICcnJygoKC8vLzAwMDIyMjQ0NDU1NTY2Njc3Nzg4ODs7Oz09PT4+Pj8/P0FBQUJCQkNDQ0REREVFRUdHR0pKSkxMTE1NTU5OTk9PT1BQUFFRUVRUVFVVVVhYWFlZWVtbW1xcXF5eXmFhYWJiYmNjY2RkZGVlZWZmZmhoaGpqamtra21tbW5ubm9vb3BwcHFxcXd3d3h4eHt7e4CAgIaGhoeHh4iIiIqKiouLi4yMjI6Ojo+Pj5CQkJGRkZKSkpOTk5WVlZaWlpeXl5qampubm5ycnJ2dnZ+fn6CgoKOjo6Wlpaampqenp6ioqKmpqaurq6+vr7GxsbKysra2tre3t7i4uLu7u7y8vL+/v8DAwMLCwsPDw8XFxcnJyc3Nzc7Ozs/Pz9DQ0NHR0dPT09XV1dbW1tfX19jY2NnZ2d3d3d7e3uDg4OHh4eLi4uPj4+Tk5OXl5ebm5ujo6Orq6uzs7O3t7e7u7u/v7/Hx8fLy8vPz8/T09PX19fb29vf39/j4+Pn5+fr6+vv7+/z8/P39/f7+/v///wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACwAAAAANgAmAAAI/wAxCRxIsKDBgwgTKsQ0KIeGhRAjSsRUxsSFiQQrNQEE8RAXGAsMCYyzJeGSixgF0qATUcwVKABECvSSBOFJgY54nEiBY5HAQC1scCBx4gimLjYwrolJcIOcgzcxoZAhUAcIgSKCYIoD4I5ADGWUMh1o5AbUi3IA2BH4BwCbSALIYLrEQAumQmMlLpUpMI2Ds5i0BKA0EAGUSgOsYGqUYA8mOAIuCbxkprJlM08J7iU4Z7DBm1k8C0zgBJOPDoa+nBH4psBASz9iy/6RpeDmgXgASPp8ketaTIIArMFkKQgMRAP56BbLF9MbBYAxnZghsMeHgRQyC6zEIA9zgmA8GNcMUwHBkMU7VLC4oUggpAcGMBTRo/KKREIuLAAoAWSgjycpYTJJBlQQMsYKCTCCSR8hWBLgQId4AEmAaEAwkCMCFCKQG0o8iIkkQvTxYBkE1CFQFzEQ1IcfD9LR3oOXDBHBCTVEQZiHOOao4448HiTBj0AGKeSQRBZpJJBV9Kjkkkw26eSTUEYp5ZRUVmnllVg2ScQBAHQJgAlZEqTGHFIwkcgEiTwS5kCSrUAIHi6sWZAiJWCCRRRyEvTEFJjg0EaeJy6A3AgvAIrJBKVhgkQDuxnqqJQBAQA7">'
-      timing: 15
-    - text: "Відповідь: і"
-      timing: 30
+    - text: "Хмм, щось це схоже на золоту спіраль... Золото, переріз, трикутник..."
+      timing: 1200
+    - text: "Це ж золотий трикутник загаданий! А у нього цікаві кути є - вони підкорюються співвідношенню 2:2:1. І ще у нього є кут 36 градусів."
+      timing: 1800
+    - text: "Вкрали 14 колес."
+      timing: 1800
+    - text: "Тут є декілька рішень, але одне з найпростіших - це 4."
+      timing: 1800
+    - text: "Які круті трикутники: Вони ж прямокутні! А тут ще і піфогорові трійки є..."
+      timing: 1200
+    - text: "Там невідомі сторони 35 та 12."
+      timing: 1800
+    - text: "Свята"
+      timing: 2100
+    - text: "Бог"
+      timing: 2100
+    - text: "Одяг"
+      timing: 2100
+    - text: "Ноги"
+      timing: 2100
+    - text: "хмм, Бог з святим щось.... О, Піфагор згадав одну фразу що і бог і святий ... і хтось ще. Як їх гурт називається (але вже без слова свята)?"
+      timing: 2100
+    - text: "Це трійка"
+      timing: 2400
+    - text: "Це штані!"
+      timing: 2520
+    - text: "Це Піфагор, не впізнали?"
+      timing: 2580
 
   - name: Етап 2
     duration: 2700
