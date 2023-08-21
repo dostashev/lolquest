@@ -11,6 +11,7 @@ class TeamConfig:
     name: str = MISSING
     id: str = MISSING
     password: str = MISSING
+    presentation_points: int = 0
 
 
 @dataclass

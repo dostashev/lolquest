@@ -15,7 +15,8 @@
                 {{ stage.name }}
             </th>
             {% endfor %}
-            <th rowspan="2" style="color:#ffffff;">Бонус</th>
+            <th rowspan="2" style="color:#ffffff;">Бонус/штраф</th>
+            <th rowspan="2" style="color:#ffffff;">Презентація</th>
             <th rowspan="2" style="color:#ffffff;">Загалом балів</th>
             <th rowspan="2" style="color:#ffffff;">Загальний час</th>
         </tr>
@@ -63,6 +64,7 @@
             {% endfor %}
             {% endfor %}
             <td>{{ team_info.bonus_points }}</td>
+            <td>{{ team_info.presentation_points }}</td>
             <td>{{ team_info.total_points }}</td>
             <td>{{ team_info.total_time|format_hhmmss }}</td>
         </tr>

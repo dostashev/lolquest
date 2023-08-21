@@ -32,6 +32,7 @@ class TeamInfo:
     stage: int
     stage_entered_timestamps: List[float]
     bonus_points: int = 0
+    presentation_points: int = 0
     total_points: int = 0
     total_time: float = 0
     finished: bool = False
@@ -275,7 +276,11 @@ class Controller:
     def _game_start(self, timestamp: float):
         self.team_info = {
             team.id: TeamInfo(
-                name=team.name, stage=0, stage_entered_timestamps=[timestamp]
+                name=team.name,
+                stage=0,
+                stage_entered_timestamps=[timestamp],
+                presentation_points=team.presentation_points,
+                total_points=team.presentation_points,
             )
             for team in self.config.teams
         }
